@@ -9,8 +9,38 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RdpRouteImport } from './routes/rdp'
+import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as MinecraftRouteImport } from './routes/minecraft'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as CloudRouteImport } from './routes/cloud'
 import { Route as IndexRouteImport } from './routes/index'
 
+const RdpRoute = RdpRouteImport.update({
+  id: '/rdp',
+  path: '/rdp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PricingRoute = PricingRouteImport.update({
+  id: '/pricing',
+  path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MinecraftRoute = MinecraftRouteImport.update({
+  id: '/minecraft',
+  path: '/minecraft',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CloudRoute = CloudRouteImport.update({
+  id: '/cloud',
+  path: '/cloud',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +49,90 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/cloud': typeof CloudRoute
+  '/contact': typeof ContactRoute
+  '/minecraft': typeof MinecraftRoute
+  '/pricing': typeof PricingRoute
+  '/rdp': typeof RdpRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/cloud': typeof CloudRoute
+  '/contact': typeof ContactRoute
+  '/minecraft': typeof MinecraftRoute
+  '/pricing': typeof PricingRoute
+  '/rdp': typeof RdpRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/cloud': typeof CloudRoute
+  '/contact': typeof ContactRoute
+  '/minecraft': typeof MinecraftRoute
+  '/pricing': typeof PricingRoute
+  '/rdp': typeof RdpRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/cloud' | '/contact' | '/minecraft' | '/pricing' | '/rdp'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/cloud' | '/contact' | '/minecraft' | '/pricing' | '/rdp'
+  id:
+    | '__root__'
+    | '/'
+    | '/cloud'
+    | '/contact'
+    | '/minecraft'
+    | '/pricing'
+    | '/rdp'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  CloudRoute: typeof CloudRoute
+  ContactRoute: typeof ContactRoute
+  MinecraftRoute: typeof MinecraftRoute
+  PricingRoute: typeof PricingRoute
+  RdpRoute: typeof RdpRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/rdp': {
+      id: '/rdp'
+      path: '/rdp'
+      fullPath: '/rdp'
+      preLoaderRoute: typeof RdpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pricing': {
+      id: '/pricing'
+      path: '/pricing'
+      fullPath: '/pricing'
+      preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/minecraft': {
+      id: '/minecraft'
+      path: '/minecraft'
+      fullPath: '/minecraft'
+      preLoaderRoute: typeof MinecraftRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/cloud': {
+      id: '/cloud'
+      path: '/cloud'
+      fullPath: '/cloud'
+      preLoaderRoute: typeof CloudRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,7 +145,22 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  CloudRoute: CloudRoute,
+  ContactRoute: ContactRoute,
+  MinecraftRoute: MinecraftRoute,
+  PricingRoute: PricingRoute,
+  RdpRoute: RdpRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

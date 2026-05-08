@@ -181,7 +181,7 @@ function ServiceCarousel() {
         {visible.map((s) => (
           <Link
             key={s.name}
-            to="/pricing"
+            to="/buy"
             className="group flex items-center gap-4 rounded-2xl border border-border/60 bg-secondary/40 p-4 transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:shadow-[var(--shadow-glow)]"
           >
             <div className={`grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br ${s.color} text-white shadow-lg`}>

@@ -6,6 +6,7 @@ type AnyRoute = "/" | "/minecraft" | "/cloud" | "/rdp" | "/pricing" | "/contact"
 
 const menus: { label: string; to?: AnyRoute; items?: { label: string; to: AnyRoute; desc: string }[] }[] = [
   { label: "Minecraft", to: "/minecraft" },
+  { label: "About", to: "/about" },
   {
     label: "Games",
     items: [

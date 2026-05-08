@@ -6,8 +6,8 @@ import { useState } from "react";
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: "Contact — VoxelHost" },
-      { name: "description", content: "Get in touch with the VoxelHost team. 24/7 support, sales, and migration assistance." },
+      { title: "Contact — HexoraCloud" },
+      { name: "description", content: "Get in touch with the HexoraCloud team. 24/7 support, sales, and migration assistance." },
     ],
   }),
   component: ContactPage,
@@ -25,7 +25,7 @@ function ContactPage() {
       <Section>
         <div className="grid gap-10 md:grid-cols-3">
           <div className="space-y-4 md:col-span-1">
-            <ContactCard icon={<Mail className="h-5 w-5" />} title="Email" value="hello@voxelhost.gg" />
+            <ContactCard icon={<Mail className="h-5 w-5" />} title="Email" value="hello@hexoracloud.com" />
             <ContactCard icon={<MessageCircle className="h-5 w-5" />} title="Live Chat" value="24/7 on the dashboard" />
             <ContactCard icon={<Headphones className="h-5 w-5" />} title="Discord" value="discord.gg/voxelhost" />
           </div>

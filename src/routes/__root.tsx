@@ -75,9 +75,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "VoxelHost — Minecraft, Cloud VPS & RDP Hosting" },
+      { title: "HexoraCloud — Minecraft, Cloud VPS & RDP Hosting" },
       { name: "description", content: "Lag-free Minecraft servers, blazing-fast cloud VPS and Windows RDP. NVMe SSDs, DDoS protection, 24/7 support." },
-      { property: "og:title", content: "VoxelHost — Premium Game & Cloud Hosting" },
+      { property: "og:title", content: "HexoraCloud — Premium Game & Cloud Hosting" },
       { property: "og:description", content: "Spin up Minecraft, VPS, or RDP in seconds. NVMe, AMD Ryzen, instant deploy." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

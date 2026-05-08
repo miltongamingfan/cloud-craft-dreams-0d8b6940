@@ -15,7 +15,7 @@ export function SiteFooter() {
         <FooterCol title="Legal" items={[["Terms", "/"], ["Privacy", "/"], ["SLA", "/"], ["Refunds", "/"]]} />
       </div>
       <div className="border-t border-border/60 px-6 py-6 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} VoxelHost. Crafted block by block.
+        © {new Date().getFullYear()} HexoraCloud. Crafted block by block.
       </div>
     </footer>
   );

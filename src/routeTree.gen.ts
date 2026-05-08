@@ -13,6 +13,7 @@ import { Route as RdpRouteImport } from './routes/rdp'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as MinecraftRouteImport } from './routes/minecraft'
+import { Route as LegalRouteImport } from './routes/legal'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CloudRouteImport } from './routes/cloud'
 import { Route as BuyRouteImport } from './routes/buy'
@@ -45,6 +46,11 @@ const PartnerRoute = PartnerRouteImport.update({
 const MinecraftRoute = MinecraftRouteImport.update({
   id: '/minecraft',
   path: '/minecraft',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LegalRoute = LegalRouteImport.update({
+  id: '/legal',
+  path: '/legal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -120,6 +126,7 @@ export interface FileRoutesByFullPath {
   '/buy': typeof BuyRoute
   '/cloud': typeof CloudRoute
   '/contact': typeof ContactRoute
+  '/legal': typeof LegalRoute
   '/minecraft': typeof MinecraftRoute
   '/partner': typeof PartnerRoute
   '/pricing': typeof PricingRoute
@@ -138,6 +145,7 @@ export interface FileRoutesByTo {
   '/buy': typeof BuyRoute
   '/cloud': typeof CloudRoute
   '/contact': typeof ContactRoute
+  '/legal': typeof LegalRoute
   '/minecraft': typeof MinecraftRoute
   '/partner': typeof PartnerRoute
   '/pricing': typeof PricingRoute
@@ -158,6 +166,7 @@ export interface FileRoutesById {
   '/buy': typeof BuyRoute
   '/cloud': typeof CloudRoute
   '/contact': typeof ContactRoute
+  '/legal': typeof LegalRoute
   '/minecraft': typeof MinecraftRoute
   '/partner': typeof PartnerRoute
   '/pricing': typeof PricingRoute
@@ -179,6 +188,7 @@ export interface FileRouteTypes {
     | '/buy'
     | '/cloud'
     | '/contact'
+    | '/legal'
     | '/minecraft'
     | '/partner'
     | '/pricing'
@@ -197,6 +207,7 @@ export interface FileRouteTypes {
     | '/buy'
     | '/cloud'
     | '/contact'
+    | '/legal'
     | '/minecraft'
     | '/partner'
     | '/pricing'
@@ -216,6 +227,7 @@ export interface FileRouteTypes {
     | '/buy'
     | '/cloud'
     | '/contact'
+    | '/legal'
     | '/minecraft'
     | '/partner'
     | '/pricing'
@@ -236,6 +248,7 @@ export interface RootRouteChildren {
   BuyRoute: typeof BuyRoute
   CloudRoute: typeof CloudRoute
   ContactRoute: typeof ContactRoute
+  LegalRoute: typeof LegalRoute
   MinecraftRoute: typeof MinecraftRoute
   PartnerRoute: typeof PartnerRoute
   PricingRoute: typeof PricingRoute
@@ -273,6 +286,13 @@ declare module '@tanstack/react-router' {
       path: '/minecraft'
       fullPath: '/minecraft'
       preLoaderRoute: typeof MinecraftRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/legal': {
+      id: '/legal'
+      path: '/legal'
+      fullPath: '/legal'
+      preLoaderRoute: typeof LegalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -402,6 +422,7 @@ const rootRouteChildren: RootRouteChildren = {
   BuyRoute: BuyRoute,
   CloudRoute: CloudRoute,
   ContactRoute: ContactRoute,
+  LegalRoute: LegalRoute,
   MinecraftRoute: MinecraftRoute,
   PartnerRoute: PartnerRoute,
   PricingRoute: PricingRoute,

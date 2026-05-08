@@ -5,7 +5,7 @@ import { useState } from "react";
 export const Route = createFileRoute("/pricing")({
   head: () => ({
     meta: [
-      { title: "Pricing — VoxelHost" },
+      { title: "Pricing — HexoraCloud" },
       { name: "description", content: "Transparent pricing for Minecraft, Cloud VPS, and Windows RDP. Pay monthly, no lock-in." },
     ],
   }),

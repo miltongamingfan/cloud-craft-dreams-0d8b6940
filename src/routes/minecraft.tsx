@@ -4,7 +4,7 @@ import { Hero, Section, SectionTitle, FeatureGrid, PlanCard } from "@/components
 export const Route = createFileRoute("/minecraft")({
   head: () => ({
     meta: [
-      { title: "Minecraft Hosting — VoxelHost" },
+      { title: "Minecraft Hosting — HexoraCloud" },
       { name: "description", content: "High-performance Minecraft Java & Bedrock hosting with Pterodactyl panel, one-click modpacks, and DDoS protection." },
     ],
   }),
@@ -29,7 +29,7 @@ function MinecraftPage() {
           items={[
             { icon: "Zap", title: "Pterodactyl Panel", desc: "Modern game panel with subusers, schedules, and SFTP." },
             { icon: "Database", title: "1-Click Modpacks", desc: "1,000+ packs from CurseForge & Modrinth. Forge, Fabric, Paper, Purpur." },
-            { icon: "Globe", title: "Free Subdomain", desc: "play.yourname.voxelhost.gg included. Custom domains supported." },
+            { icon: "Globe", title: "Free Subdomain", desc: "play.yourname.hexoracloud.com included. Custom domains supported." },
             { icon: "Shield", title: "Anti-DDoS Game", desc: "Layer 7 game-aware mitigation. Botters and crashers blocked at the edge." },
             { icon: "HardDrive", title: "Daily Backups", desc: "Automatic snapshots with one-click restore. Never lose your world." },
             { icon: "Headphones", title: "Migration Help", desc: "Free transfer from your old host. We move your world for you." },

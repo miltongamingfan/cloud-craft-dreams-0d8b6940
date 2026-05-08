@@ -4,7 +4,7 @@ import { Hero, Section, SectionTitle, FeatureGrid, PlanCard } from "@/components
 export const Route = createFileRoute("/cloud")({
   head: () => ({
     meta: [
-      { title: "Cloud VPS Hosting — VoxelHost" },
+      { title: "Cloud VPS Hosting — HexoraCloud" },
       { name: "description", content: "KVM Cloud VPS with NVMe storage, 10 Gbps uplinks, full root access, and instant deploy." },
     ],
   }),

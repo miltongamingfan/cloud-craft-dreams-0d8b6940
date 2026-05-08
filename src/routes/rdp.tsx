@@ -4,7 +4,7 @@ import { Hero, Section, SectionTitle, FeatureGrid, PlanCard } from "@/components
 export const Route = createFileRoute("/rdp")({
   head: () => ({
     meta: [
-      { title: "Windows RDP Hosting — VoxelHost" },
+      { title: "Windows RDP Hosting — HexoraCloud" },
       { name: "description", content: "Dedicated Windows RDP servers with admin access, GPU options, and instant deployment." },
     ],
   }),

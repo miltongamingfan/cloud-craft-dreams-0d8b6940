@@ -97,7 +97,7 @@ function GamePage() {
       <Section>
         <SectionTitle eyebrow="What's included" title="Every plan ships with" />
         <div className="mx-auto grid max-w-4xl gap-3 sm:grid-cols-2">
-          {game.bullets.map((b) => (
+          {game.bullets.map((b: string) => (
             <div key={b} className="flex items-start gap-2 rounded-xl border border-border/60 bg-card/40 p-4">
               <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
               <span className="text-sm">{b}</span>

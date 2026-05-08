@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RdpRouteImport } from './routes/rdp'
 import { Route as PricingRouteImport } from './routes/pricing'
+import { Route as PaymentRouteImport } from './routes/payment'
 import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as MinecraftRouteImport } from './routes/minecraft'
 import { Route as LegalRouteImport } from './routes/legal'
@@ -36,6 +37,11 @@ const RdpRoute = RdpRouteImport.update({
 const PricingRoute = PricingRouteImport.update({
   id: '/pricing',
   path: '/pricing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PaymentRoute = PaymentRouteImport.update({
+  id: '/payment',
+  path: '/payment',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PartnerRoute = PartnerRouteImport.update({
@@ -129,6 +135,7 @@ export interface FileRoutesByFullPath {
   '/legal': typeof LegalRoute
   '/minecraft': typeof MinecraftRoute
   '/partner': typeof PartnerRoute
+  '/payment': typeof PaymentRoute
   '/pricing': typeof PricingRoute
   '/rdp': typeof RdpRoute
   '/admin/login': typeof AdminLoginRoute
@@ -148,6 +155,7 @@ export interface FileRoutesByTo {
   '/legal': typeof LegalRoute
   '/minecraft': typeof MinecraftRoute
   '/partner': typeof PartnerRoute
+  '/payment': typeof PaymentRoute
   '/pricing': typeof PricingRoute
   '/rdp': typeof RdpRoute
   '/admin/login': typeof AdminLoginRoute
@@ -169,6 +177,7 @@ export interface FileRoutesById {
   '/legal': typeof LegalRoute
   '/minecraft': typeof MinecraftRoute
   '/partner': typeof PartnerRoute
+  '/payment': typeof PaymentRoute
   '/pricing': typeof PricingRoute
   '/rdp': typeof RdpRoute
   '/admin/login': typeof AdminLoginRoute
@@ -191,6 +200,7 @@ export interface FileRouteTypes {
     | '/legal'
     | '/minecraft'
     | '/partner'
+    | '/payment'
     | '/pricing'
     | '/rdp'
     | '/admin/login'
@@ -210,6 +220,7 @@ export interface FileRouteTypes {
     | '/legal'
     | '/minecraft'
     | '/partner'
+    | '/payment'
     | '/pricing'
     | '/rdp'
     | '/admin/login'
@@ -230,6 +241,7 @@ export interface FileRouteTypes {
     | '/legal'
     | '/minecraft'
     | '/partner'
+    | '/payment'
     | '/pricing'
     | '/rdp'
     | '/admin/login'
@@ -251,6 +263,7 @@ export interface RootRouteChildren {
   LegalRoute: typeof LegalRoute
   MinecraftRoute: typeof MinecraftRoute
   PartnerRoute: typeof PartnerRoute
+  PaymentRoute: typeof PaymentRoute
   PricingRoute: typeof PricingRoute
   RdpRoute: typeof RdpRoute
   CategorySlugRoute: typeof CategorySlugRouteWithChildren
@@ -272,6 +285,13 @@ declare module '@tanstack/react-router' {
       path: '/pricing'
       fullPath: '/pricing'
       preLoaderRoute: typeof PricingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/payment': {
+      id: '/payment'
+      path: '/payment'
+      fullPath: '/payment'
+      preLoaderRoute: typeof PaymentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/partner': {
@@ -425,6 +445,7 @@ const rootRouteChildren: RootRouteChildren = {
   LegalRoute: LegalRoute,
   MinecraftRoute: MinecraftRoute,
   PartnerRoute: PartnerRoute,
+  PaymentRoute: PaymentRoute,
   PricingRoute: PricingRoute,
   RdpRoute: RdpRoute,
   CategorySlugRoute: CategorySlugRouteWithChildren,

@@ -85,7 +85,7 @@ function GamePage() {
       <Section>
         <SectionTitle eyebrow={`${game.name} hosting`} title={`Built specifically for ${game.name}`} />
         <div className="mx-auto grid max-w-4xl gap-4">
-          {game.body.map((b) => (
+          {game.body.map((b: { heading: string; text: string }) => (
             <div key={b.heading} className="rounded-2xl border border-border/60 bg-card/40 p-6 backdrop-blur">
               <h3 className="font-display text-xl font-bold">{b.heading}</h3>
               <p className="mt-2 text-muted-foreground">{b.text}</p>

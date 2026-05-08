@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ChevronDown, Hexagon, Menu } from "lucide-react";
 import { useState } from "react";
 
-type AnyRoute = "/" | "/minecraft" | "/cloud" | "/rdp" | "/pricing" | "/contact";
+type AnyRoute = "/" | "/minecraft" | "/cloud" | "/rdp" | "/pricing" | "/contact" | "/about" | "/buy";
 
 const menus: { label: string; to?: AnyRoute; items?: { label: string; to: AnyRoute; desc: string }[] }[] = [
   { label: "Minecraft", to: "/minecraft" },

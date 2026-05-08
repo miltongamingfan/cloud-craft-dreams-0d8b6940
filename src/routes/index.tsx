@@ -130,7 +130,7 @@ function HeroSplit() {
           <Link to="/pricing" className="rounded-xl bg-[var(--gradient-primary)] px-7 py-3.5 font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform hover:scale-105">
             View Plans
           </Link>
-          <Link to="/contact" className="rounded-xl border border-border bg-card/40 px-7 py-3.5 font-semibold backdrop-blur hover:bg-card/70">
+          <Link to="/buy" className="rounded-xl border border-border bg-card/40 px-7 py-3.5 font-semibold backdrop-blur hover:bg-card/70">
             Get Started
           </Link>
         </div>
@@ -181,7 +181,7 @@ function ServiceCarousel() {
         {visible.map((s) => (
           <Link
             key={s.name}
-            to="/pricing"
+            to="/buy"
             className="group flex items-center gap-4 rounded-2xl border border-border/60 bg-secondary/40 p-4 transition-all hover:-translate-y-0.5 hover:border-primary/60 hover:shadow-[var(--shadow-glow)]"
           >
             <div className={`grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br ${s.color} text-white shadow-lg`}>

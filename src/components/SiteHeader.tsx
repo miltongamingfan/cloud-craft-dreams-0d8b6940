@@ -2,10 +2,11 @@ import { Link } from "@tanstack/react-router";
 import { ChevronDown, Hexagon, Menu } from "lucide-react";
 import { useState } from "react";
 
-type AnyRoute = "/" | "/minecraft" | "/cloud" | "/rdp" | "/pricing" | "/contact";
+type AnyRoute = "/" | "/minecraft" | "/cloud" | "/rdp" | "/pricing" | "/contact" | "/about" | "/buy";
 
 const menus: { label: string; to?: AnyRoute; items?: { label: string; to: AnyRoute; desc: string }[] }[] = [
   { label: "Minecraft", to: "/minecraft" },
+  { label: "About", to: "/about" },
   {
     label: "Games",
     items: [
@@ -139,7 +140,7 @@ export function SiteHeader() {
               )}
             </div>
             <Link
-              to="/pricing"
+              to="/buy"
               className="rounded-full bg-[var(--gradient-primary)] px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform hover:scale-105"
             >
               Get Started

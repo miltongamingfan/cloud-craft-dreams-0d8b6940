@@ -134,7 +134,7 @@ export function PlanCard({
         ))}
       </ul>
       <Link
-        to="/contact"
+        to="/buy"
         className={`mt-6 rounded-xl px-4 py-2.5 text-center text-sm font-semibold transition-transform hover:scale-105 ${popular ? "bg-[var(--gradient-primary)] text-primary-foreground" : "border border-border bg-card hover:bg-secondary"}`}
       >
         {cta}

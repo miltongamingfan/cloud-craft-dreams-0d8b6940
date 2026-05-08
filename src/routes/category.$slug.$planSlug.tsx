@@ -91,13 +91,13 @@ function PlanPage() {
               <p className="mt-2 text-xs text-muted-foreground">Billed in {plan.currency}. Cancel anytime.</p>
 
               <Link
-                to="/contact"
+                to="/buy"
                 className="mt-6 block rounded-xl bg-[var(--gradient-primary)] px-6 py-3.5 text-center font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform hover:scale-[1.02]"
               >
                 Order {plan.name}
               </Link>
               <Link
-                to="/contact"
+                to="/buy"
                 className="mt-3 block rounded-xl border border-border bg-card/60 px-6 py-3 text-center text-sm font-semibold hover:bg-secondary"
               >
                 Talk to sales

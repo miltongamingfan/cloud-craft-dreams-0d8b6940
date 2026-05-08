@@ -14,7 +14,13 @@ import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as MinecraftRouteImport } from './routes/minecraft'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CloudRouteImport } from './routes/cloud'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as CategorySlugRouteImport } from './routes/category.$slug'
+import { Route as AdminPlansRouteImport } from './routes/admin.plans'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as CategorySlugPlanSlugRouteImport } from './routes/category.$slug.$planSlug'
 
 const RdpRoute = RdpRouteImport.update({
   id: '/rdp',
@@ -41,19 +47,55 @@ const CloudRoute = CloudRouteImport.update({
   path: '/cloud',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminRoute,
+} as any)
+const CategorySlugRoute = CategorySlugRouteImport.update({
+  id: '/category/$slug',
+  path: '/category/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminPlansRoute = AdminPlansRouteImport.update({
+  id: '/plans',
+  path: '/plans',
+  getParentRoute: () => AdminRoute,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => AdminRoute,
+} as any)
+const CategorySlugPlanSlugRoute = CategorySlugPlanSlugRouteImport.update({
+  id: '/$planSlug',
+  path: '/$planSlug',
+  getParentRoute: () => CategorySlugRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/cloud': typeof CloudRoute
   '/contact': typeof ContactRoute
   '/minecraft': typeof MinecraftRoute
   '/pricing': typeof PricingRoute
   '/rdp': typeof RdpRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/plans': typeof AdminPlansRoute
+  '/category/$slug': typeof CategorySlugRouteWithChildren
+  '/admin/': typeof AdminIndexRoute
+  '/category/$slug/$planSlug': typeof CategorySlugPlanSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,38 +104,80 @@ export interface FileRoutesByTo {
   '/minecraft': typeof MinecraftRoute
   '/pricing': typeof PricingRoute
   '/rdp': typeof RdpRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/plans': typeof AdminPlansRoute
+  '/category/$slug': typeof CategorySlugRouteWithChildren
+  '/admin': typeof AdminIndexRoute
+  '/category/$slug/$planSlug': typeof CategorySlugPlanSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRouteWithChildren
   '/cloud': typeof CloudRoute
   '/contact': typeof ContactRoute
   '/minecraft': typeof MinecraftRoute
   '/pricing': typeof PricingRoute
   '/rdp': typeof RdpRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/plans': typeof AdminPlansRoute
+  '/category/$slug': typeof CategorySlugRouteWithChildren
+  '/admin/': typeof AdminIndexRoute
+  '/category/$slug/$planSlug': typeof CategorySlugPlanSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/cloud' | '/contact' | '/minecraft' | '/pricing' | '/rdp'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/cloud'
+    | '/contact'
+    | '/minecraft'
+    | '/pricing'
+    | '/rdp'
+    | '/admin/login'
+    | '/admin/plans'
+    | '/category/$slug'
+    | '/admin/'
+    | '/category/$slug/$planSlug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cloud' | '/contact' | '/minecraft' | '/pricing' | '/rdp'
-  id:
-    | '__root__'
+  to:
     | '/'
     | '/cloud'
     | '/contact'
     | '/minecraft'
     | '/pricing'
     | '/rdp'
+    | '/admin/login'
+    | '/admin/plans'
+    | '/category/$slug'
+    | '/admin'
+    | '/category/$slug/$planSlug'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/cloud'
+    | '/contact'
+    | '/minecraft'
+    | '/pricing'
+    | '/rdp'
+    | '/admin/login'
+    | '/admin/plans'
+    | '/category/$slug'
+    | '/admin/'
+    | '/category/$slug/$planSlug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRouteWithChildren
   CloudRoute: typeof CloudRoute
   ContactRoute: typeof ContactRoute
   MinecraftRoute: typeof MinecraftRoute
   PricingRoute: typeof PricingRoute
   RdpRoute: typeof RdpRoute
+  CategorySlugRoute: typeof CategorySlugRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -133,6 +217,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CloudRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -140,16 +231,79 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/category/$slug': {
+      id: '/category/$slug'
+      path: '/category/$slug'
+      fullPath: '/category/$slug'
+      preLoaderRoute: typeof CategorySlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/plans': {
+      id: '/admin/plans'
+      path: '/plans'
+      fullPath: '/admin/plans'
+      preLoaderRoute: typeof AdminPlansRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof AdminRoute
+    }
+    '/category/$slug/$planSlug': {
+      id: '/category/$slug/$planSlug'
+      path: '/$planSlug'
+      fullPath: '/category/$slug/$planSlug'
+      preLoaderRoute: typeof CategorySlugPlanSlugRouteImport
+      parentRoute: typeof CategorySlugRoute
+    }
   }
 }
 
+interface AdminRouteChildren {
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminPlansRoute: typeof AdminPlansRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+}
+
+const AdminRouteChildren: AdminRouteChildren = {
+  AdminLoginRoute: AdminLoginRoute,
+  AdminPlansRoute: AdminPlansRoute,
+  AdminIndexRoute: AdminIndexRoute,
+}
+
+const AdminRouteWithChildren = AdminRoute._addFileChildren(AdminRouteChildren)
+
+interface CategorySlugRouteChildren {
+  CategorySlugPlanSlugRoute: typeof CategorySlugPlanSlugRoute
+}
+
+const CategorySlugRouteChildren: CategorySlugRouteChildren = {
+  CategorySlugPlanSlugRoute: CategorySlugPlanSlugRoute,
+}
+
+const CategorySlugRouteWithChildren = CategorySlugRoute._addFileChildren(
+  CategorySlugRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRouteWithChildren,
   CloudRoute: CloudRoute,
   ContactRoute: ContactRoute,
   MinecraftRoute: MinecraftRoute,
   PricingRoute: PricingRoute,
   RdpRoute: RdpRoute,
+  CategorySlugRoute: CategorySlugRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

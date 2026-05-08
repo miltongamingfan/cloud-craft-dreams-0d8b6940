@@ -18,6 +18,7 @@ import { Route as LegalRouteImport } from './routes/legal'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CloudRouteImport } from './routes/cloud'
 import { Route as BuyRouteImport } from './routes/buy'
+import { Route as BrandingRouteImport } from './routes/branding'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -72,6 +73,11 @@ const CloudRoute = CloudRouteImport.update({
 const BuyRoute = BuyRouteImport.update({
   id: '/buy',
   path: '/buy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BrandingRoute = BrandingRouteImport.update({
+  id: '/branding',
+  path: '/branding',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminRoute = AdminRouteImport.update({
@@ -129,6 +135,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRouteWithChildren
+  '/branding': typeof BrandingRoute
   '/buy': typeof BuyRoute
   '/cloud': typeof CloudRoute
   '/contact': typeof ContactRoute
@@ -149,6 +156,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/branding': typeof BrandingRoute
   '/buy': typeof BuyRoute
   '/cloud': typeof CloudRoute
   '/contact': typeof ContactRoute
@@ -171,6 +179,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/admin': typeof AdminRouteWithChildren
+  '/branding': typeof BrandingRoute
   '/buy': typeof BuyRoute
   '/cloud': typeof CloudRoute
   '/contact': typeof ContactRoute
@@ -194,6 +203,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/branding'
     | '/buy'
     | '/cloud'
     | '/contact'
@@ -214,6 +224,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/branding'
     | '/buy'
     | '/cloud'
     | '/contact'
@@ -235,6 +246,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/admin'
+    | '/branding'
     | '/buy'
     | '/cloud'
     | '/contact'
@@ -257,6 +269,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRouteWithChildren
+  BrandingRoute: typeof BrandingRoute
   BuyRoute: typeof BuyRoute
   CloudRoute: typeof CloudRoute
   ContactRoute: typeof ContactRoute
@@ -334,6 +347,13 @@ declare module '@tanstack/react-router' {
       path: '/buy'
       fullPath: '/buy'
       preLoaderRoute: typeof BuyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/branding': {
+      id: '/branding'
+      path: '/branding'
+      fullPath: '/branding'
+      preLoaderRoute: typeof BrandingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin': {
@@ -439,6 +459,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   AdminRoute: AdminRouteWithChildren,
+  BrandingRoute: BrandingRoute,
   BuyRoute: BuyRoute,
   CloudRoute: CloudRoute,
   ContactRoute: ContactRoute,

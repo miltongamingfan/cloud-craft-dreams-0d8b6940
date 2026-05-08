@@ -130,7 +130,7 @@ function HeroSplit() {
           <Link to="/pricing" className="rounded-xl bg-[var(--gradient-primary)] px-7 py-3.5 font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform hover:scale-105">
             View Plans
           </Link>
-          <Link to="/contact" className="rounded-xl border border-border bg-card/40 px-7 py-3.5 font-semibold backdrop-blur hover:bg-card/70">
+          <Link to="/buy" className="rounded-xl border border-border bg-card/40 px-7 py-3.5 font-semibold backdrop-blur hover:bg-card/70">
             Get Started
           </Link>
         </div>

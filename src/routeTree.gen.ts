@@ -19,6 +19,7 @@ import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as ToolsSlugRouteImport } from './routes/tools.$slug'
 import { Route as GamesSlugRouteImport } from './routes/games.$slug'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
 import { Route as AdminPlansRouteImport } from './routes/admin.plans'
@@ -75,6 +76,11 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AdminRoute,
 } as any)
+const ToolsSlugRoute = ToolsSlugRouteImport.update({
+  id: '/tools/$slug',
+  path: '/tools/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const GamesSlugRoute = GamesSlugRouteImport.update({
   id: '/games/$slug',
   path: '/games/$slug',
@@ -115,6 +121,7 @@ export interface FileRoutesByFullPath {
   '/admin/plans': typeof AdminPlansRoute
   '/category/$slug': typeof CategorySlugRouteWithChildren
   '/games/$slug': typeof GamesSlugRoute
+  '/tools/$slug': typeof ToolsSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/category/$slug/$planSlug': typeof CategorySlugPlanSlugRoute
 }
@@ -131,6 +138,7 @@ export interface FileRoutesByTo {
   '/admin/plans': typeof AdminPlansRoute
   '/category/$slug': typeof CategorySlugRouteWithChildren
   '/games/$slug': typeof GamesSlugRoute
+  '/tools/$slug': typeof ToolsSlugRoute
   '/admin': typeof AdminIndexRoute
   '/category/$slug/$planSlug': typeof CategorySlugPlanSlugRoute
 }
@@ -149,6 +157,7 @@ export interface FileRoutesById {
   '/admin/plans': typeof AdminPlansRoute
   '/category/$slug': typeof CategorySlugRouteWithChildren
   '/games/$slug': typeof GamesSlugRoute
+  '/tools/$slug': typeof ToolsSlugRoute
   '/admin/': typeof AdminIndexRoute
   '/category/$slug/$planSlug': typeof CategorySlugPlanSlugRoute
 }
@@ -168,6 +177,7 @@ export interface FileRouteTypes {
     | '/admin/plans'
     | '/category/$slug'
     | '/games/$slug'
+    | '/tools/$slug'
     | '/admin/'
     | '/category/$slug/$planSlug'
   fileRoutesByTo: FileRoutesByTo
@@ -184,6 +194,7 @@ export interface FileRouteTypes {
     | '/admin/plans'
     | '/category/$slug'
     | '/games/$slug'
+    | '/tools/$slug'
     | '/admin'
     | '/category/$slug/$planSlug'
   id:
@@ -201,6 +212,7 @@ export interface FileRouteTypes {
     | '/admin/plans'
     | '/category/$slug'
     | '/games/$slug'
+    | '/tools/$slug'
     | '/admin/'
     | '/category/$slug/$planSlug'
   fileRoutesById: FileRoutesById
@@ -217,6 +229,7 @@ export interface RootRouteChildren {
   RdpRoute: typeof RdpRoute
   CategorySlugRoute: typeof CategorySlugRouteWithChildren
   GamesSlugRoute: typeof GamesSlugRoute
+  ToolsSlugRoute: typeof ToolsSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -290,6 +303,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/admin/'
       preLoaderRoute: typeof AdminIndexRouteImport
       parentRoute: typeof AdminRoute
+    }
+    '/tools/$slug': {
+      id: '/tools/$slug'
+      path: '/tools/$slug'
+      fullPath: '/tools/$slug'
+      preLoaderRoute: typeof ToolsSlugRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/games/$slug': {
       id: '/games/$slug'
@@ -367,7 +387,18 @@ const rootRouteChildren: RootRouteChildren = {
   RdpRoute: RdpRoute,
   CategorySlugRoute: CategorySlugRouteWithChildren,
   GamesSlugRoute: GamesSlugRoute,
+  ToolsSlugRoute: ToolsSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

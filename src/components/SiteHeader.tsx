@@ -1,48 +1,68 @@
 import { Link } from "@tanstack/react-router";
-import { ChevronDown, Hexagon, Menu } from "lucide-react";
+import { ChevronDown, Hexagon, Menu, X } from "lucide-react";
 import { useState } from "react";
 
-type AnyRoute = "/" | "/minecraft" | "/cloud" | "/rdp" | "/pricing" | "/contact" | "/about" | "/buy";
+type AnyRoute =
+  | "/" | "/minecraft" | "/cloud" | "/rdp" | "/pricing" | "/contact"
+  | "/about" | "/buy" | "/partner" | "/legal" | "/payment" | "/branding" | "/blogs";
 
-const menus: { label: string; to?: AnyRoute; items?: { label: string; to: AnyRoute; desc: string }[] }[] = [
+type LinkItem = { label: string; to: AnyRoute; desc?: string };
+type GameItem = { label: string; slug: string; desc: string };
+type ToolItem = { label: string; slug: string; desc: string };
+
+type Menu =
+  | { label: "Minecraft"; to: AnyRoute }
+  | { label: "Games"; games: GameItem[] }
+  | { label: "Services"; items: LinkItem[] }
+  | { label: "Others"; items: LinkItem[] }
+  | { label: "Tools"; tools: ToolItem[] };
+
+const menus: Menu[] = [
   { label: "Minecraft", to: "/minecraft" },
-  { label: "About", to: "/about" },
   {
     label: "Games",
-    items: [
-      { label: "Minecraft", to: "/minecraft", desc: "Java + Bedrock, modpacks" },
-      { label: "Palworld", to: "/pricing", desc: "Dedicated Palworld servers" },
-      { label: "FiveM / GTA V", to: "/pricing", desc: "Roleplay servers, ESX/QBCore" },
-      { label: "Rust", to: "/pricing", desc: "High-pop wipes, Oxide ready" },
-      { label: "ARK / Valheim", to: "/pricing", desc: "Survival, mods supported" },
-      { label: "CS2 / TF2", to: "/pricing", desc: "Source engine games" },
+    games: [
+      { label: "Minecraft", slug: "minecraft", desc: "Java + Bedrock, modpacks" },
+      { label: "Palworld", slug: "palworld", desc: "Catch & build at 60 FPS" },
+      { label: "FiveM / GTA V", slug: "fivem", desc: "ESX, QBCore, qb-target" },
+      { label: "Rust", slug: "rust", desc: "Carbon-powered, wipe ready" },
+      { label: "ARK: Survival", slug: "ark", desc: "ASE + ASA, clusters" },
+      { label: "CS2", slug: "cs2", desc: "128-tick, MatchZy ready" },
+      { label: "Valheim", slug: "valheim", desc: "Crossplay, BepInEx" },
+      { label: "Terraria", slug: "terraria", desc: "tShock, TModLoader" },
+      { label: "Garry's Mod", slug: "garrys-mod", desc: "DarkRP, TTT, sandbox" },
+      { label: "Satisfactory", slug: "satisfactory", desc: "Factory building" },
+      { label: "7 Days to Die", slug: "7-days-to-die", desc: "Horde nights, mods" },
+      { label: "Project Zomboid", slug: "project-zomboid", desc: "32-player apocalypse" },
     ],
   },
   {
     label: "Services",
     items: [
+      { label: "Minecraft Hosting", to: "/minecraft", desc: "Java + Bedrock, modpacks, networks" },
       { label: "Cloud VPS", to: "/cloud", desc: "KVM, NVMe, full root" },
-      { label: "Windows RDP", to: "/rdp", desc: "Forex VPS, GPU options" },
-      { label: "Dedicated Servers", to: "/pricing", desc: "Bare metal Ryzen / EPYC" },
-      { label: "Web Hosting", to: "/pricing", desc: "cPanel + LiteSpeed" },
+      { label: "Windows RDP", to: "/rdp", desc: "Forex, GPU, dedicated IP" },
+      { label: "All plans", to: "/pricing", desc: "Compare every plan side by side" },
     ],
   },
   {
     label: "Others",
     items: [
-      { label: "Domains", to: "/pricing", desc: "Register & transfer" },
-      { label: "Storage VPS", to: "/cloud", desc: "Up to 4 TB HDD" },
-      { label: "Discord Bots", to: "/cloud", desc: "24/7 bot hosting" },
-      { label: "Affiliate Program", to: "/contact", desc: "Earn 25% recurring" },
+      { label: "About Us", to: "/about", desc: "Who we are & why we host" },
+      { label: "Affiliate / Partner", to: "/partner", desc: "Earn 25% recurring" },
+      { label: "Contact Us", to: "/contact", desc: "Talk to support or sales" },
+      { label: "Legal Policies", to: "/legal", desc: "ToS, Privacy, AUP, SLA" },
+      { label: "Payment Methods", to: "/payment", desc: "Cards, PayPal, crypto, UPI" },
+      { label: "Branding", to: "/branding", desc: "Logos, colors, brand kit" },
+      { label: "Blog", to: "/blogs", desc: "Guides, tutorials, deep-dives" },
     ],
   },
   {
     label: "Tools",
-    items: [
-      { label: "Server Status", to: "/contact", desc: "Live network status" },
-      { label: "Looking Glass", to: "/contact", desc: "Network diagnostics" },
-      { label: "MC Ping Checker", to: "/contact", desc: "Test your server ping" },
-      { label: "Knowledge Base", to: "/contact", desc: "Guides & tutorials" },
+    tools: [
+      { label: "Minecraft Tools", slug: "minecraft", desc: "Status, MOTD, UUID, skins" },
+      { label: "FiveM Tools", slug: "fivem", desc: "Artifacts, recipes, Steam IDs" },
+      { label: "Looking Glass", slug: "looking-glass", desc: "Latency from every region" },
     ],
   },
 ];
@@ -72,8 +92,21 @@ export function SiteHeader() {
 
           {/* Desktop nav */}
           <nav className="hidden flex-1 items-center justify-center gap-1 lg:flex">
-            {menus.map((m) =>
-              m.items ? (
+            {menus.map((m) => {
+              if (m.label === "Minecraft") {
+                return (
+                  <Link
+                    key={m.label}
+                    to={m.to}
+                    activeProps={{ className: "text-foreground bg-secondary/60" }}
+                    inactiveProps={{ className: "text-muted-foreground hover:text-foreground" }}
+                    className="rounded-full px-4 py-2 text-sm font-medium transition-colors"
+                  >
+                    {m.label}
+                  </Link>
+                );
+              }
+              return (
                 <div
                   key={m.label}
                   className="relative"
@@ -85,34 +118,46 @@ export function SiteHeader() {
                     <ChevronDown className={`h-3.5 w-3.5 transition-transform ${open === m.label ? "rotate-180" : ""}`} />
                   </button>
                   {open === m.label && (
-                    <div className="absolute left-1/2 top-full z-50 w-72 -translate-x-1/2 pt-3">
-                      <div className="glass rounded-2xl p-2 shadow-[var(--shadow-elevated)]">
-                        {m.items.map((it) => (
+                    <div className={`absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3 ${m.label === "Games" ? "w-[640px]" : "w-80"}`}>
+                      <div className={`glass rounded-2xl p-2 shadow-[var(--shadow-elevated)] ${m.label === "Games" ? "grid grid-cols-2 gap-1" : ""}`}>
+                        {m.label === "Games" && m.games.map((g) => (
+                          <Link
+                            key={g.slug}
+                            to="/games/$slug"
+                            params={{ slug: g.slug }}
+                            className="block rounded-xl px-3 py-2.5 hover:bg-secondary/60"
+                          >
+                            <div className="text-sm font-semibold">{g.label}</div>
+                            <div className="text-xs text-muted-foreground">{g.desc}</div>
+                          </Link>
+                        ))}
+                        {m.label === "Tools" && m.tools.map((t) => (
+                          <Link
+                            key={t.slug}
+                            to="/tools/$slug"
+                            params={{ slug: t.slug }}
+                            className="block rounded-xl px-3 py-2.5 hover:bg-secondary/60"
+                          >
+                            <div className="text-sm font-semibold">{t.label}</div>
+                            <div className="text-xs text-muted-foreground">{t.desc}</div>
+                          </Link>
+                        ))}
+                        {(m.label === "Services" || m.label === "Others") && m.items.map((it) => (
                           <Link
                             key={it.label}
                             to={it.to}
                             className="block rounded-xl px-3 py-2.5 hover:bg-secondary/60"
                           >
                             <div className="text-sm font-semibold">{it.label}</div>
-                            <div className="text-xs text-muted-foreground">{it.desc}</div>
+                            {it.desc && <div className="text-xs text-muted-foreground">{it.desc}</div>}
                           </Link>
                         ))}
                       </div>
                     </div>
                   )}
                 </div>
-              ) : (
-                <Link
-                  key={m.label}
-                  to={m.to!}
-                  activeProps={{ className: "text-foreground bg-secondary/60" }}
-                  inactiveProps={{ className: "text-muted-foreground hover:text-foreground" }}
-                  className="rounded-full px-4 py-2 text-sm font-medium transition-colors"
-                >
-                  {m.label}
-                </Link>
-              ),
-            )}
+              );
+            })}
           </nav>
 
           {/* Currency + CTA */}
@@ -150,24 +195,34 @@ export function SiteHeader() {
               onClick={() => setMobile((v) => !v)}
               aria-label="Menu"
             >
-              <Menu className="h-4 w-4" />
+              {mobile ? <X className="h-4 w-4" /> : <Menu className="h-4 w-4" />}
             </button>
           </div>
         </div>
 
         {/* Mobile menu */}
         {mobile && (
-          <div className="glass mt-2 rounded-2xl p-3 lg:hidden">
+          <div className="glass mt-2 max-h-[80vh] overflow-y-auto rounded-2xl p-3 lg:hidden">
             {menus.map((m) => (
               <div key={m.label} className="py-1">
-                {m.to ? (
+                {m.label === "Minecraft" ? (
                   <Link to={m.to} className="block rounded-lg px-3 py-2 text-sm font-semibold hover:bg-secondary/60" onClick={() => setMobile(false)}>
                     {m.label}
                   </Link>
                 ) : (
                   <>
                     <div className="px-3 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">{m.label}</div>
-                    {m.items!.map((it) => (
+                    {m.label === "Games" && m.games.map((g) => (
+                      <Link key={g.slug} to="/games/$slug" params={{ slug: g.slug }} className="block rounded-lg px-3 py-2 text-sm hover:bg-secondary/60" onClick={() => setMobile(false)}>
+                        {g.label}
+                      </Link>
+                    ))}
+                    {m.label === "Tools" && m.tools.map((t) => (
+                      <Link key={t.slug} to="/tools/$slug" params={{ slug: t.slug }} className="block rounded-lg px-3 py-2 text-sm hover:bg-secondary/60" onClick={() => setMobile(false)}>
+                        {t.label}
+                      </Link>
+                    ))}
+                    {(m.label === "Services" || m.label === "Others") && m.items.map((it) => (
                       <Link key={it.label} to={it.to} className="block rounded-lg px-3 py-2 text-sm hover:bg-secondary/60" onClick={() => setMobile(false)}>
                         {it.label}
                       </Link>

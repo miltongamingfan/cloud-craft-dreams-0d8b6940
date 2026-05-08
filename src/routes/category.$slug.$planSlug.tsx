@@ -52,7 +52,7 @@ function PlanPage() {
               <div className="mt-10">
                 <h2 className="font-display text-2xl font-bold">What's included</h2>
                 <ul className="mt-5 grid gap-3 sm:grid-cols-2">
-                  {plan.features.map((f) => (
+                  {plan.features.map((f: string) => (
                     <li key={f} className="flex items-start gap-2 rounded-xl border border-border/60 bg-card/40 p-3">
                       <Check className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
                       <span className="text-sm">{f}</span>
@@ -66,7 +66,7 @@ function PlanPage() {
               <div className="mt-10">
                 <h2 className="flex items-center gap-2 font-display text-2xl font-bold"><Globe className="h-5 w-5 text-accent" /> Available locations</h2>
                 <div className="mt-4 flex flex-wrap gap-2">
-                  {plan.locations.map((l) => (
+                  {plan.locations.map((l: string) => (
                     <span key={l} className="rounded-full border border-border/60 bg-card/40 px-3 py-1.5 text-sm">{l}</span>
                   ))}
                 </div>

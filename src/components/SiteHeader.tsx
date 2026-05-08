@@ -140,7 +140,7 @@ export function SiteHeader() {
               )}
             </div>
             <Link
-              to="/pricing"
+              to="/buy"
               className="rounded-full bg-[var(--gradient-primary)] px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform hover:scale-105"
             >
               Get Started

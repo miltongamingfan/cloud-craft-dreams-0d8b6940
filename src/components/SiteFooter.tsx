@@ -5,9 +5,9 @@ export function SiteFooter() {
     <footer className="mt-32 border-t border-border/60 bg-background/60 backdrop-blur">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 py-14 md:grid-cols-4">
         <div>
-          <h3 className="font-display text-xl font-bold gradient-text">VoxelHost</h3>
+          <h3 className="font-display text-xl font-bold gradient-text">HexoraCloud</h3>
           <p className="mt-3 text-sm text-muted-foreground">
-            Premium Minecraft, Cloud VPS, and RDP hosting powered by NVMe and AMD Ryzen.
+            Premium Minecraft, game, Cloud VPS, and Windows RDP hosting powered by NVMe and AMD Ryzen.
           </p>
         </div>
         <FooterCol title="Hosting" items={[["Minecraft", "/minecraft"], ["Cloud VPS", "/cloud"], ["Windows RDP", "/rdp"], ["Pricing", "/pricing"]]} />

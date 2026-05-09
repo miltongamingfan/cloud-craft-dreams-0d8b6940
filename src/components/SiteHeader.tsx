@@ -114,7 +114,10 @@ export function SiteHeader() {
                   onMouseEnter={() => setOpen(m.label)}
                   onMouseLeave={() => setOpen(null)}
                 >
-                  <button className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
+                  <button
+                    onClick={() => setOpen(open === m.label ? null : m.label)}
+                    className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  >
                     {m.label}
                     <ChevronDown className={`h-3.5 w-3.5 transition-transform ${open === m.label ? "rotate-180" : ""}`} />
                   </button>

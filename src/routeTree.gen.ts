@@ -23,6 +23,7 @@ import { Route as BlogsRouteImport } from './routes/blogs'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as ToolsSlugRouteImport } from './routes/tools.$slug'
 import { Route as ServicesVpsRouteImport } from './routes/services.vps'
@@ -104,6 +105,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -179,6 +185,7 @@ export interface FileRoutesByFullPath {
   '/services/vps': typeof ServicesVpsRoute
   '/tools/$slug': typeof ToolsSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/services/': typeof ServicesIndexRoute
   '/category/$slug/$planSlug': typeof CategorySlugPlanSlugRoute
 }
 export interface FileRoutesByTo {
@@ -204,6 +211,7 @@ export interface FileRoutesByTo {
   '/services/vps': typeof ServicesVpsRoute
   '/tools/$slug': typeof ToolsSlugRoute
   '/admin': typeof AdminIndexRoute
+  '/services': typeof ServicesIndexRoute
   '/category/$slug/$planSlug': typeof CategorySlugPlanSlugRoute
 }
 export interface FileRoutesById {
@@ -231,6 +239,7 @@ export interface FileRoutesById {
   '/services/vps': typeof ServicesVpsRoute
   '/tools/$slug': typeof ToolsSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/services/': typeof ServicesIndexRoute
   '/category/$slug/$planSlug': typeof CategorySlugPlanSlugRoute
 }
 export interface FileRouteTypes {
@@ -259,6 +268,7 @@ export interface FileRouteTypes {
     | '/services/vps'
     | '/tools/$slug'
     | '/admin/'
+    | '/services/'
     | '/category/$slug/$planSlug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -284,6 +294,7 @@ export interface FileRouteTypes {
     | '/services/vps'
     | '/tools/$slug'
     | '/admin'
+    | '/services'
     | '/category/$slug/$planSlug'
   id:
     | '__root__'
@@ -310,6 +321,7 @@ export interface FileRouteTypes {
     | '/services/vps'
     | '/tools/$slug'
     | '/admin/'
+    | '/services/'
     | '/category/$slug/$planSlug'
   fileRoutesById: FileRoutesById
 }
@@ -334,6 +346,7 @@ export interface RootRouteChildren {
   ServicesRdpRoute: typeof ServicesRdpRoute
   ServicesVpsRoute: typeof ServicesVpsRoute
   ToolsSlugRoute: typeof ToolsSlugRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -434,6 +447,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/': {
@@ -556,6 +576,7 @@ const rootRouteChildren: RootRouteChildren = {
   ServicesRdpRoute: ServicesRdpRoute,
   ServicesVpsRoute: ServicesVpsRoute,
   ToolsSlugRoute: ToolsSlugRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

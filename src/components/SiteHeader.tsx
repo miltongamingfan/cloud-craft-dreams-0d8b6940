@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ChevronDown, Hexagon, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 type AnyRoute =
@@ -82,8 +82,8 @@ export function SiteHeader() {
         <div className="glass relative flex items-center justify-between gap-2 rounded-full px-3 py-2 shadow-[var(--shadow-elevated)]">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 pl-2 pr-3 font-display font-bold">
-            <span className="grid h-9 w-9 place-items-center rounded-lg bg-[var(--gradient-primary)] shadow-[var(--shadow-glow)]">
-              <Hexagon className="h-4 w-4 text-primary-foreground" strokeWidth={2.5} />
+            <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-lg bg-[var(--gradient-primary)] shadow-[var(--shadow-glow)]">
+              <img src="https://cdn.discordapp.com/icons/1490115223623958748/b1fae699285edefadf4953e49a79e7b5.webp" alt="HexoraCloud logo" className="h-9 w-9 object-cover" />
             </span>
             <span className="leading-tight">
               <span className="block text-sm font-extrabold tracking-tight">HexoraCloud</span>

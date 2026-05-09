@@ -112,13 +112,11 @@ export function SiteHeader() {
                 <div
                   key={m.label}
                   className="relative"
-                  onMouseEnter={() => setOpen(m.label)}
-                  onMouseLeave={() => setOpen(null)}
                 >
                   <button
                     type="button"
                     aria-expanded={open === m.label}
-                    onClick={() => setOpen(m.label)}
+                    onClick={() => setOpen(open === m.label ? null : m.label)}
                     className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {m.label}

@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ChevronDown, Menu, X } from "lucide-react";
 import { useState } from "react";
+import hexoraLogo from "@/assets/hexora-cloud-logo.jpg";
 
 type AnyRoute =
   | "/" | "/minecraft" | "/cloud" | "/rdp" | "/pricing" | "/contact"
@@ -83,7 +84,7 @@ export function SiteHeader() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 pl-2 pr-3 font-display font-bold">
             <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-lg bg-[var(--gradient-primary)] shadow-[var(--shadow-glow)]">
-              <img src="https://cdn.discordapp.com/icons/1490115223623958748/b1fae699285edefadf4953e49a79e7b5.webp" alt="HexoraCloud logo" className="h-9 w-9 object-cover" />
+              <img src={hexoraLogo} alt="HexoraCloud logo" className="h-9 w-9 object-cover" />
             </span>
             <span className="leading-tight">
               <span className="block text-sm font-extrabold tracking-tight">HexoraCloud</span>
@@ -115,7 +116,9 @@ export function SiteHeader() {
                   onMouseLeave={() => setOpen(null)}
                 >
                   <button
-                    onClick={() => setOpen(open === m.label ? null : m.label)}
+                    type="button"
+                    aria-expanded={open === m.label}
+                    onClick={() => setOpen(m.label)}
                     className="flex items-center gap-1 rounded-full px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {m.label}
@@ -129,6 +132,7 @@ export function SiteHeader() {
                             key={g.slug}
                             to="/games/$slug"
                             params={{ slug: g.slug }}
+                            onClick={() => setOpen(null)}
                             className="block rounded-xl px-3 py-2.5 hover:bg-secondary/60"
                           >
                             <div className="text-sm font-semibold">{g.label}</div>
@@ -140,6 +144,7 @@ export function SiteHeader() {
                             key={t.slug}
                             to="/tools/$slug"
                             params={{ slug: t.slug }}
+                            onClick={() => setOpen(null)}
                             className="block rounded-xl px-3 py-2.5 hover:bg-secondary/60"
                           >
                             <div className="text-sm font-semibold">{t.label}</div>
@@ -150,6 +155,7 @@ export function SiteHeader() {
                           <Link
                             key={it.label}
                             to={it.to}
+                            onClick={() => setOpen(null)}
                             className="block rounded-xl px-3 py-2.5 hover:bg-secondary/60"
                           >
                             <div className="text-sm font-semibold">{it.label}</div>

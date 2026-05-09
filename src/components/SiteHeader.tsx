@@ -40,9 +40,9 @@ const menus: Menu[] = [
   {
     label: "Services",
     items: [
-      { label: "Minecraft Hosting", to: "/minecraft", desc: "Java + Bedrock, modpacks, networks" },
-      { label: "Cloud VPS", to: "/cloud", desc: "KVM, NVMe, full root" },
-      { label: "Windows RDP", to: "/rdp", desc: "Forex, GPU, dedicated IP" },
+      { label: "Minecraft Hosting", to: "/services/minecraft", desc: "Java + Bedrock, modpacks, networks" },
+      { label: "Cloud VPS", to: "/services/vps", desc: "KVM, NVMe, full root" },
+      { label: "Windows RDP", to: "/services/rdp", desc: "Forex, GPU, dedicated IP" },
       { label: "All plans", to: "/pricing", desc: "Compare every plan side by side" },
     ],
   },

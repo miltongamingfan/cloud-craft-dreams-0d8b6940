@@ -4,7 +4,8 @@ import { useState } from "react";
 
 type AnyRoute =
   | "/" | "/minecraft" | "/cloud" | "/rdp" | "/pricing" | "/contact"
-  | "/about" | "/buy" | "/partner" | "/legal" | "/payment" | "/branding" | "/blogs";
+  | "/about" | "/buy" | "/partner" | "/legal" | "/payment" | "/branding" | "/blogs"
+  | "/services" | "/services/vps" | "/services/rdp" | "/services/minecraft";
 
 type LinkItem = { label: string; to: AnyRoute; desc?: string };
 type GameItem = { label: string; slug: string; desc: string };

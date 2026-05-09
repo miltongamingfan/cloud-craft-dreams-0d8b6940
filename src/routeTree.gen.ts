@@ -23,8 +23,12 @@ import { Route as BlogsRouteImport } from './routes/blogs'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as ToolsSlugRouteImport } from './routes/tools.$slug'
+import { Route as ServicesVpsRouteImport } from './routes/services.vps'
+import { Route as ServicesRdpRouteImport } from './routes/services.rdp'
+import { Route as ServicesMinecraftRouteImport } from './routes/services.minecraft'
 import { Route as GamesSlugRouteImport } from './routes/games.$slug'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
 import { Route as AdminPlansRouteImport } from './routes/admin.plans'
@@ -101,6 +105,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/services/',
+  path: '/services/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/',
   path: '/',
@@ -109,6 +118,21 @@ const AdminIndexRoute = AdminIndexRouteImport.update({
 const ToolsSlugRoute = ToolsSlugRouteImport.update({
   id: '/tools/$slug',
   path: '/tools/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesVpsRoute = ServicesVpsRouteImport.update({
+  id: '/services/vps',
+  path: '/services/vps',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRdpRoute = ServicesRdpRouteImport.update({
+  id: '/services/rdp',
+  path: '/services/rdp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesMinecraftRoute = ServicesMinecraftRouteImport.update({
+  id: '/services/minecraft',
+  path: '/services/minecraft',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GamesSlugRoute = GamesSlugRouteImport.update({
@@ -156,8 +180,12 @@ export interface FileRoutesByFullPath {
   '/admin/plans': typeof AdminPlansRoute
   '/category/$slug': typeof CategorySlugRouteWithChildren
   '/games/$slug': typeof GamesSlugRoute
+  '/services/minecraft': typeof ServicesMinecraftRoute
+  '/services/rdp': typeof ServicesRdpRoute
+  '/services/vps': typeof ServicesVpsRoute
   '/tools/$slug': typeof ToolsSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/services/': typeof ServicesIndexRoute
   '/category/$slug/$planSlug': typeof CategorySlugPlanSlugRoute
 }
 export interface FileRoutesByTo {
@@ -178,8 +206,12 @@ export interface FileRoutesByTo {
   '/admin/plans': typeof AdminPlansRoute
   '/category/$slug': typeof CategorySlugRouteWithChildren
   '/games/$slug': typeof GamesSlugRoute
+  '/services/minecraft': typeof ServicesMinecraftRoute
+  '/services/rdp': typeof ServicesRdpRoute
+  '/services/vps': typeof ServicesVpsRoute
   '/tools/$slug': typeof ToolsSlugRoute
   '/admin': typeof AdminIndexRoute
+  '/services': typeof ServicesIndexRoute
   '/category/$slug/$planSlug': typeof CategorySlugPlanSlugRoute
 }
 export interface FileRoutesById {
@@ -202,8 +234,12 @@ export interface FileRoutesById {
   '/admin/plans': typeof AdminPlansRoute
   '/category/$slug': typeof CategorySlugRouteWithChildren
   '/games/$slug': typeof GamesSlugRoute
+  '/services/minecraft': typeof ServicesMinecraftRoute
+  '/services/rdp': typeof ServicesRdpRoute
+  '/services/vps': typeof ServicesVpsRoute
   '/tools/$slug': typeof ToolsSlugRoute
   '/admin/': typeof AdminIndexRoute
+  '/services/': typeof ServicesIndexRoute
   '/category/$slug/$planSlug': typeof CategorySlugPlanSlugRoute
 }
 export interface FileRouteTypes {
@@ -227,8 +263,12 @@ export interface FileRouteTypes {
     | '/admin/plans'
     | '/category/$slug'
     | '/games/$slug'
+    | '/services/minecraft'
+    | '/services/rdp'
+    | '/services/vps'
     | '/tools/$slug'
     | '/admin/'
+    | '/services/'
     | '/category/$slug/$planSlug'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -249,8 +289,12 @@ export interface FileRouteTypes {
     | '/admin/plans'
     | '/category/$slug'
     | '/games/$slug'
+    | '/services/minecraft'
+    | '/services/rdp'
+    | '/services/vps'
     | '/tools/$slug'
     | '/admin'
+    | '/services'
     | '/category/$slug/$planSlug'
   id:
     | '__root__'
@@ -272,8 +316,12 @@ export interface FileRouteTypes {
     | '/admin/plans'
     | '/category/$slug'
     | '/games/$slug'
+    | '/services/minecraft'
+    | '/services/rdp'
+    | '/services/vps'
     | '/tools/$slug'
     | '/admin/'
+    | '/services/'
     | '/category/$slug/$planSlug'
   fileRoutesById: FileRoutesById
 }
@@ -294,7 +342,11 @@ export interface RootRouteChildren {
   RdpRoute: typeof RdpRoute
   CategorySlugRoute: typeof CategorySlugRouteWithChildren
   GamesSlugRoute: typeof GamesSlugRoute
+  ServicesMinecraftRoute: typeof ServicesMinecraftRoute
+  ServicesRdpRoute: typeof ServicesRdpRoute
+  ServicesVpsRoute: typeof ServicesVpsRoute
   ToolsSlugRoute: typeof ToolsSlugRoute
+  ServicesIndexRoute: typeof ServicesIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -397,6 +449,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/': {
+      id: '/services/'
+      path: '/services'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/': {
       id: '/admin/'
       path: '/'
@@ -409,6 +468,27 @@ declare module '@tanstack/react-router' {
       path: '/tools/$slug'
       fullPath: '/tools/$slug'
       preLoaderRoute: typeof ToolsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/vps': {
+      id: '/services/vps'
+      path: '/services/vps'
+      fullPath: '/services/vps'
+      preLoaderRoute: typeof ServicesVpsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/rdp': {
+      id: '/services/rdp'
+      path: '/services/rdp'
+      fullPath: '/services/rdp'
+      preLoaderRoute: typeof ServicesRdpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services/minecraft': {
+      id: '/services/minecraft'
+      path: '/services/minecraft'
+      fullPath: '/services/minecraft'
+      preLoaderRoute: typeof ServicesMinecraftRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/games/$slug': {
@@ -492,7 +572,11 @@ const rootRouteChildren: RootRouteChildren = {
   RdpRoute: RdpRoute,
   CategorySlugRoute: CategorySlugRouteWithChildren,
   GamesSlugRoute: GamesSlugRoute,
+  ServicesMinecraftRoute: ServicesMinecraftRoute,
+  ServicesRdpRoute: ServicesRdpRoute,
+  ServicesVpsRoute: ServicesVpsRoute,
   ToolsSlugRoute: ToolsSlugRoute,
+  ServicesIndexRoute: ServicesIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

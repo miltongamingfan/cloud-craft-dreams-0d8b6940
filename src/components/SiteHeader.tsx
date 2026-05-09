@@ -4,7 +4,8 @@ import { useState } from "react";
 
 type AnyRoute =
   | "/" | "/minecraft" | "/cloud" | "/rdp" | "/pricing" | "/contact"
-  | "/about" | "/buy" | "/partner" | "/legal" | "/payment" | "/branding" | "/blogs";
+  | "/about" | "/buy" | "/partner" | "/legal" | "/payment" | "/branding" | "/blogs"
+  | "/services" | "/services/vps" | "/services/rdp" | "/services/minecraft";
 
 type LinkItem = { label: string; to: AnyRoute; desc?: string };
 type GameItem = { label: string; slug: string; desc: string };
@@ -39,9 +40,9 @@ const menus: Menu[] = [
   {
     label: "Services",
     items: [
-      { label: "Minecraft Hosting", to: "/minecraft", desc: "Java + Bedrock, modpacks, networks" },
-      { label: "Cloud VPS", to: "/cloud", desc: "KVM, NVMe, full root" },
-      { label: "Windows RDP", to: "/rdp", desc: "Forex, GPU, dedicated IP" },
+      { label: "Minecraft Hosting", to: "/services/minecraft", desc: "Java + Bedrock, modpacks, networks" },
+      { label: "Cloud VPS", to: "/services/vps", desc: "KVM, NVMe, full root" },
+      { label: "Windows RDP", to: "/services/rdp", desc: "Forex, GPU, dedicated IP" },
       { label: "All plans", to: "/pricing", desc: "Compare every plan side by side" },
     ],
   },

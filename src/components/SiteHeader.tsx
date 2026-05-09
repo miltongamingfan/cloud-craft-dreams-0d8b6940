@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ChevronDown, Hexagon, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 type AnyRoute =

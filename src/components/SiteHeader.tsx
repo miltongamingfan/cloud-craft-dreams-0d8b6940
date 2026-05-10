@@ -103,19 +103,6 @@ export function SiteHeader() {
           {/* Desktop nav */}
           <nav className="hidden flex-1 items-center justify-center gap-1 lg:flex">
             {menus.map((m) => {
-              if (m.label === "Minecraft") {
-                return (
-                  <Link
-                    key={m.label}
-                    to={m.to}
-                    activeProps={{ className: "text-foreground bg-secondary/60" }}
-                    inactiveProps={{ className: "text-muted-foreground hover:text-foreground" }}
-                    className="rounded-full px-4 py-2 text-sm font-medium transition-colors"
-                  >
-                    {m.label}
-                  </Link>
-                );
-              }
               return (
                 <div
                   key={m.label}
@@ -133,6 +120,9 @@ export function SiteHeader() {
                   {open === m.label && (
                     <div className={`absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3 ${m.label === "Games" ? "w-[640px]" : "w-80"}`}>
                       <div className={`glass rounded-2xl p-2 shadow-[var(--shadow-elevated)] ${m.label === "Games" ? "grid grid-cols-2 gap-1" : ""}`}>
+                        {m.label === "Services Links" && (
+                          <p className="px-3 py-2 text-xs leading-relaxed text-muted-foreground">{m.description}</p>
+                        )}
                         {m.label === "Games" && m.games.map((g) => (
                           <Link
                             key={g.slug}
@@ -157,16 +147,30 @@ export function SiteHeader() {
                             <div className="text-xs text-muted-foreground">{t.desc}</div>
                           </Link>
                         ))}
-                        {(m.label === "Services" || m.label === "Others") && m.items.map((it) => (
-                          <Link
-                            key={it.label}
-                            to={it.to}
-                            onClick={() => setOpen(null)}
-                            className="block rounded-xl px-3 py-2.5 hover:bg-secondary/60"
-                          >
-                            <div className="text-sm font-semibold">{it.label}</div>
-                            {it.desc && <div className="text-xs text-muted-foreground">{it.desc}</div>}
-                          </Link>
+                        {(m.label === "Services" || m.label === "Others" || m.label === "Services Links") && m.items.map((it) => (
+                          it.href ? (
+                            <a
+                              key={it.label}
+                              href={it.href}
+                              target="_blank"
+                              rel="noreferrer"
+                              onClick={() => setOpen(null)}
+                              className="block rounded-xl px-3 py-2.5 hover:bg-secondary/60"
+                            >
+                              <div className="text-sm font-semibold">{it.label} ↗</div>
+                              {it.desc && <div className="text-xs text-muted-foreground">{it.desc}</div>}
+                            </a>
+                          ) : (
+                            <Link
+                              key={it.label}
+                              to={it.to!}
+                              onClick={() => setOpen(null)}
+                              className="block rounded-xl px-3 py-2.5 hover:bg-secondary/60"
+                            >
+                              <div className="text-sm font-semibold">{it.label}</div>
+                              {it.desc && <div className="text-xs text-muted-foreground">{it.desc}</div>}
+                            </Link>
+                          )
                         ))}
                       </div>
                     </div>

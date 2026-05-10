@@ -8,19 +8,27 @@ type AnyRoute =
   | "/about" | "/buy" | "/partner" | "/legal" | "/payment" | "/branding" | "/blogs"
   | "/services" | "/services/vps" | "/services/rdp" | "/services/minecraft";
 
-type LinkItem = { label: string; to: AnyRoute; desc?: string };
+type LinkItem = { label: string; to?: AnyRoute; href?: string; desc?: string };
 type GameItem = { label: string; slug: string; desc: string };
 type ToolItem = { label: string; slug: string; desc: string };
 
 type Menu =
-  | { label: "Minecraft"; to: AnyRoute }
+  | { label: "Services Links"; items: LinkItem[]; description: string }
   | { label: "Games"; games: GameItem[] }
   | { label: "Services"; items: LinkItem[] }
   | { label: "Others"; items: LinkItem[] }
   | { label: "Tools"; tools: ToolItem[] };
 
 const menus: Menu[] = [
-  { label: "Minecraft", to: "/minecraft" },
+  {
+    label: "Services Links",
+    description:
+      "Direct access to your HexoraCloud control panels. Manage your Minecraft servers and VPS instances — start, stop, reinstall, view live console and resource usage, all in one place.",
+    items: [
+      { label: "Minecraft Panel", href: "https://mc-panel.tigerhost.space/", desc: "Manage your Minecraft servers" },
+      { label: "VPS / RDP Panel", href: "https://vm-control.tigerhost.space/", desc: "Control your VPS & Windows RDP" },
+    ],
+  },
   {
     label: "Games",
     games: [
@@ -95,19 +103,6 @@ export function SiteHeader() {
           {/* Desktop nav */}
           <nav className="hidden flex-1 items-center justify-center gap-1 lg:flex">
             {menus.map((m) => {
-              if (m.label === "Minecraft") {
-                return (
-                  <Link
-                    key={m.label}
-                    to={m.to}
-                    activeProps={{ className: "text-foreground bg-secondary/60" }}
-                    inactiveProps={{ className: "text-muted-foreground hover:text-foreground" }}
-                    className="rounded-full px-4 py-2 text-sm font-medium transition-colors"
-                  >
-                    {m.label}
-                  </Link>
-                );
-              }
               return (
                 <div
                   key={m.label}
@@ -125,6 +120,9 @@ export function SiteHeader() {
                   {open === m.label && (
                     <div className={`absolute left-1/2 top-full z-50 -translate-x-1/2 pt-3 ${m.label === "Games" ? "w-[640px]" : "w-80"}`}>
                       <div className={`glass rounded-2xl p-2 shadow-[var(--shadow-elevated)] ${m.label === "Games" ? "grid grid-cols-2 gap-1" : ""}`}>
+                        {m.label === "Services Links" && (
+                          <p className="px-3 py-2 text-xs leading-relaxed text-muted-foreground">{m.description}</p>
+                        )}
                         {m.label === "Games" && m.games.map((g) => (
                           <Link
                             key={g.slug}
@@ -149,16 +147,30 @@ export function SiteHeader() {
                             <div className="text-xs text-muted-foreground">{t.desc}</div>
                           </Link>
                         ))}
-                        {(m.label === "Services" || m.label === "Others") && m.items.map((it) => (
-                          <Link
-                            key={it.label}
-                            to={it.to}
-                            onClick={() => setOpen(null)}
-                            className="block rounded-xl px-3 py-2.5 hover:bg-secondary/60"
-                          >
-                            <div className="text-sm font-semibold">{it.label}</div>
-                            {it.desc && <div className="text-xs text-muted-foreground">{it.desc}</div>}
-                          </Link>
+                        {(m.label === "Services" || m.label === "Others" || m.label === "Services Links") && m.items.map((it) => (
+                          it.href ? (
+                            <a
+                              key={it.label}
+                              href={it.href}
+                              target="_blank"
+                              rel="noreferrer"
+                              onClick={() => setOpen(null)}
+                              className="block rounded-xl px-3 py-2.5 hover:bg-secondary/60"
+                            >
+                              <div className="text-sm font-semibold">{it.label} ↗</div>
+                              {it.desc && <div className="text-xs text-muted-foreground">{it.desc}</div>}
+                            </a>
+                          ) : (
+                            <Link
+                              key={it.label}
+                              to={it.to!}
+                              onClick={() => setOpen(null)}
+                              className="block rounded-xl px-3 py-2.5 hover:bg-secondary/60"
+                            >
+                              <div className="text-sm font-semibold">{it.label}</div>
+                              {it.desc && <div className="text-xs text-muted-foreground">{it.desc}</div>}
+                            </Link>
+                          )
                         ))}
                       </div>
                     </div>
@@ -213,30 +225,28 @@ export function SiteHeader() {
           <div className="glass mt-2 max-h-[80vh] overflow-y-auto rounded-2xl p-3 lg:hidden">
             {menus.map((m) => (
               <div key={m.label} className="py-1">
-                {m.label === "Minecraft" ? (
-                  <Link to={m.to} className="block rounded-lg px-3 py-2 text-sm font-semibold hover:bg-secondary/60" onClick={() => setMobile(false)}>
-                    {m.label}
+                <div className="px-3 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">{m.label}</div>
+                {m.label === "Games" && m.games.map((g) => (
+                  <Link key={g.slug} to="/games/$slug" params={{ slug: g.slug }} className="block rounded-lg px-3 py-2 text-sm hover:bg-secondary/60" onClick={() => setMobile(false)}>
+                    {g.label}
                   </Link>
-                ) : (
-                  <>
-                    <div className="px-3 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">{m.label}</div>
-                    {m.label === "Games" && m.games.map((g) => (
-                      <Link key={g.slug} to="/games/$slug" params={{ slug: g.slug }} className="block rounded-lg px-3 py-2 text-sm hover:bg-secondary/60" onClick={() => setMobile(false)}>
-                        {g.label}
-                      </Link>
-                    ))}
-                    {m.label === "Tools" && m.tools.map((t) => (
-                      <Link key={t.slug} to="/tools/$slug" params={{ slug: t.slug }} className="block rounded-lg px-3 py-2 text-sm hover:bg-secondary/60" onClick={() => setMobile(false)}>
-                        {t.label}
-                      </Link>
-                    ))}
-                    {(m.label === "Services" || m.label === "Others") && m.items.map((it) => (
-                      <Link key={it.label} to={it.to} className="block rounded-lg px-3 py-2 text-sm hover:bg-secondary/60" onClick={() => setMobile(false)}>
-                        {it.label}
-                      </Link>
-                    ))}
-                  </>
-                )}
+                ))}
+                {m.label === "Tools" && m.tools.map((t) => (
+                  <Link key={t.slug} to="/tools/$slug" params={{ slug: t.slug }} className="block rounded-lg px-3 py-2 text-sm hover:bg-secondary/60" onClick={() => setMobile(false)}>
+                    {t.label}
+                  </Link>
+                ))}
+                {(m.label === "Services" || m.label === "Others" || m.label === "Services Links") && m.items.map((it) => (
+                  it.href ? (
+                    <a key={it.label} href={it.href} target="_blank" rel="noreferrer" className="block rounded-lg px-3 py-2 text-sm hover:bg-secondary/60" onClick={() => setMobile(false)}>
+                      {it.label} ↗
+                    </a>
+                  ) : (
+                    <Link key={it.label} to={it.to!} className="block rounded-lg px-3 py-2 text-sm hover:bg-secondary/60" onClick={() => setMobile(false)}>
+                      {it.label}
+                    </Link>
+                  )
+                ))}
               </div>
             ))}
           </div>

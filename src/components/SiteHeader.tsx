@@ -225,30 +225,28 @@ export function SiteHeader() {
           <div className="glass mt-2 max-h-[80vh] overflow-y-auto rounded-2xl p-3 lg:hidden">
             {menus.map((m) => (
               <div key={m.label} className="py-1">
-                {m.label === "Minecraft" ? (
-                  <Link to={m.to} className="block rounded-lg px-3 py-2 text-sm font-semibold hover:bg-secondary/60" onClick={() => setMobile(false)}>
-                    {m.label}
+                <div className="px-3 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">{m.label}</div>
+                {m.label === "Games" && m.games.map((g) => (
+                  <Link key={g.slug} to="/games/$slug" params={{ slug: g.slug }} className="block rounded-lg px-3 py-2 text-sm hover:bg-secondary/60" onClick={() => setMobile(false)}>
+                    {g.label}
                   </Link>
-                ) : (
-                  <>
-                    <div className="px-3 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">{m.label}</div>
-                    {m.label === "Games" && m.games.map((g) => (
-                      <Link key={g.slug} to="/games/$slug" params={{ slug: g.slug }} className="block rounded-lg px-3 py-2 text-sm hover:bg-secondary/60" onClick={() => setMobile(false)}>
-                        {g.label}
-                      </Link>
-                    ))}
-                    {m.label === "Tools" && m.tools.map((t) => (
-                      <Link key={t.slug} to="/tools/$slug" params={{ slug: t.slug }} className="block rounded-lg px-3 py-2 text-sm hover:bg-secondary/60" onClick={() => setMobile(false)}>
-                        {t.label}
-                      </Link>
-                    ))}
-                    {(m.label === "Services" || m.label === "Others") && m.items.map((it) => (
-                      <Link key={it.label} to={it.to} className="block rounded-lg px-3 py-2 text-sm hover:bg-secondary/60" onClick={() => setMobile(false)}>
-                        {it.label}
-                      </Link>
-                    ))}
-                  </>
-                )}
+                ))}
+                {m.label === "Tools" && m.tools.map((t) => (
+                  <Link key={t.slug} to="/tools/$slug" params={{ slug: t.slug }} className="block rounded-lg px-3 py-2 text-sm hover:bg-secondary/60" onClick={() => setMobile(false)}>
+                    {t.label}
+                  </Link>
+                ))}
+                {(m.label === "Services" || m.label === "Others" || m.label === "Services Links") && m.items.map((it) => (
+                  it.href ? (
+                    <a key={it.label} href={it.href} target="_blank" rel="noreferrer" className="block rounded-lg px-3 py-2 text-sm hover:bg-secondary/60" onClick={() => setMobile(false)}>
+                      {it.label} ↗
+                    </a>
+                  ) : (
+                    <Link key={it.label} to={it.to!} className="block rounded-lg px-3 py-2 text-sm hover:bg-secondary/60" onClick={() => setMobile(false)}>
+                      {it.label}
+                    </Link>
+                  )
+                ))}
               </div>
             ))}
           </div>

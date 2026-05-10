@@ -1,7 +1,7 @@
 import { createFileRoute, Outlet, Link, useRouter, useRouterState } from "@tanstack/react-router";
 import { useIsAdmin } from "@/lib/use-admin";
 import { supabase } from "@/integrations/supabase/client";
-import { LayoutDashboard, Package, LogOut, Hexagon, ExternalLink } from "lucide-react";
+import { LayoutDashboard, Package, Layers, LogOut, Hexagon, ExternalLink } from "lucide-react";
 
 export const Route = createFileRoute("/admin")({ component: AdminLayout });
 
@@ -33,6 +33,7 @@ function AdminLayout() {
 
   const items = [
     { to: "/admin" as const, label: "Overview", icon: LayoutDashboard, exact: true },
+    { to: "/admin/categories" as const, label: "Categories", icon: Layers },
     { to: "/admin/plans" as const, label: "Plans", icon: Package },
   ];
 

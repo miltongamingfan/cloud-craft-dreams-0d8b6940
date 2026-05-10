@@ -1,12 +1,14 @@
 import { Link } from "@tanstack/react-router";
-import { ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X, LogIn, User as UserIcon, LogOut, Shield } from "lucide-react";
 import { useState } from "react";
 import hexoraLogo from "@/assets/hexora-cloud-logo.jpg";
+import { useAuth, useIsAdmin } from "@/lib/use-admin";
+import { supabase } from "@/integrations/supabase/client";
 
 type AnyRoute =
   | "/" | "/minecraft" | "/cloud" | "/rdp" | "/pricing" | "/contact"
   | "/about" | "/buy" | "/partner" | "/legal" | "/payment" | "/branding" | "/blogs"
-  | "/services" | "/services/vps" | "/services/rdp" | "/services/minecraft";
+  | "/services" | "/services/vps" | "/services/rdp" | "/services/minecraft" | "/login" | "/admin";
 
 type LinkItem = { label: string; to?: AnyRoute; href?: string; desc?: string };
 type GameItem = { label: string; slug: string; desc: string };
@@ -84,6 +86,9 @@ export function SiteHeader() {
   const [cur, setCur] = useState("USD ($)");
   const [curOpen, setCurOpen] = useState(false);
   const [mobile, setMobile] = useState(false);
+  const [acct, setAcct] = useState(false);
+  const { user } = useAuth();
+  const { isAdmin } = useIsAdmin();
 
   return (
     <header className="sticky top-0 z-40 w-full">
@@ -204,12 +209,45 @@ export function SiteHeader() {
                 </div>
               )}
             </div>
-            <Link
-              to="/buy"
-              className="rounded-full bg-[var(--gradient-primary)] px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform hover:scale-105"
-            >
-              Get Started
-            </Link>
+            {user ? (
+              <div className="relative">
+                <button
+                  type="button"
+                  onClick={() => setAcct((v) => !v)}
+                  className="flex items-center gap-2 rounded-full bg-[var(--gradient-primary)] px-4 py-2 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)]"
+                >
+                  <UserIcon className="h-4 w-4" />
+                  <span className="hidden md:inline max-w-[120px] truncate">{user.email}</span>
+                  <ChevronDown className={`h-3.5 w-3.5 transition-transform ${acct ? "rotate-180" : ""}`} />
+                </button>
+                {acct && (
+                  <div className="glass absolute right-0 top-full z-50 mt-2 w-56 rounded-2xl p-1.5">
+                    <div className="px-3 py-2 text-xs text-muted-foreground border-b border-border/60 mb-1 truncate">{user.email}</div>
+                    {isAdmin && (
+                      <Link to="/admin" onClick={() => setAcct(false)} className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm hover:bg-secondary/60">
+                        <Shield className="h-4 w-4" /> Admin panel
+                      </Link>
+                    )}
+                    <Link to="/buy" onClick={() => setAcct(false)} className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm hover:bg-secondary/60">
+                      <UserIcon className="h-4 w-4" /> Order / Tickets
+                    </Link>
+                    <button
+                      onClick={async () => { await supabase.auth.signOut(); setAcct(false); }}
+                      className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-destructive hover:bg-destructive/10"
+                    >
+                      <LogOut className="h-4 w-4" /> Sign out
+                    </button>
+                  </div>
+                )}
+              </div>
+            ) : (
+              <Link
+                to="/login"
+                className="inline-flex items-center gap-1.5 rounded-full bg-[var(--gradient-primary)] px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform hover:scale-105"
+              >
+                <LogIn className="h-4 w-4" /> Login
+              </Link>
+            )}
             <button
               className="grid h-9 w-9 place-items-center rounded-full bg-secondary/60 lg:hidden"
               onClick={() => setMobile((v) => !v)}

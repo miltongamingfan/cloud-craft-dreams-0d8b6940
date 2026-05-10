@@ -14,6 +14,7 @@ import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as PaymentRouteImport } from './routes/payment'
 import { Route as PartnerRouteImport } from './routes/partner'
 import { Route as MinecraftRouteImport } from './routes/minecraft'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as LegalRouteImport } from './routes/legal'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CloudRouteImport } from './routes/cloud'
@@ -33,6 +34,7 @@ import { Route as GamesSlugRouteImport } from './routes/games.$slug'
 import { Route as CategorySlugRouteImport } from './routes/category.$slug'
 import { Route as AdminPlansRouteImport } from './routes/admin.plans'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
+import { Route as AdminCategoriesRouteImport } from './routes/admin.categories'
 import { Route as CategorySlugPlanSlugRouteImport } from './routes/category.$slug.$planSlug'
 
 const RdpRoute = RdpRouteImport.update({
@@ -58,6 +60,11 @@ const PartnerRoute = PartnerRouteImport.update({
 const MinecraftRoute = MinecraftRouteImport.update({
   id: '/minecraft',
   path: '/minecraft',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const LegalRoute = LegalRouteImport.update({
@@ -155,6 +162,11 @@ const AdminLoginRoute = AdminLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => AdminRoute,
 } as any)
+const AdminCategoriesRoute = AdminCategoriesRouteImport.update({
+  id: '/categories',
+  path: '/categories',
+  getParentRoute: () => AdminRoute,
+} as any)
 const CategorySlugPlanSlugRoute = CategorySlugPlanSlugRouteImport.update({
   id: '/$planSlug',
   path: '/$planSlug',
@@ -171,11 +183,13 @@ export interface FileRoutesByFullPath {
   '/cloud': typeof CloudRoute
   '/contact': typeof ContactRoute
   '/legal': typeof LegalRoute
+  '/login': typeof LoginRoute
   '/minecraft': typeof MinecraftRoute
   '/partner': typeof PartnerRoute
   '/payment': typeof PaymentRoute
   '/pricing': typeof PricingRoute
   '/rdp': typeof RdpRoute
+  '/admin/categories': typeof AdminCategoriesRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/plans': typeof AdminPlansRoute
   '/category/$slug': typeof CategorySlugRouteWithChildren
@@ -197,11 +211,13 @@ export interface FileRoutesByTo {
   '/cloud': typeof CloudRoute
   '/contact': typeof ContactRoute
   '/legal': typeof LegalRoute
+  '/login': typeof LoginRoute
   '/minecraft': typeof MinecraftRoute
   '/partner': typeof PartnerRoute
   '/payment': typeof PaymentRoute
   '/pricing': typeof PricingRoute
   '/rdp': typeof RdpRoute
+  '/admin/categories': typeof AdminCategoriesRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/plans': typeof AdminPlansRoute
   '/category/$slug': typeof CategorySlugRouteWithChildren
@@ -225,11 +241,13 @@ export interface FileRoutesById {
   '/cloud': typeof CloudRoute
   '/contact': typeof ContactRoute
   '/legal': typeof LegalRoute
+  '/login': typeof LoginRoute
   '/minecraft': typeof MinecraftRoute
   '/partner': typeof PartnerRoute
   '/payment': typeof PaymentRoute
   '/pricing': typeof PricingRoute
   '/rdp': typeof RdpRoute
+  '/admin/categories': typeof AdminCategoriesRoute
   '/admin/login': typeof AdminLoginRoute
   '/admin/plans': typeof AdminPlansRoute
   '/category/$slug': typeof CategorySlugRouteWithChildren
@@ -254,11 +272,13 @@ export interface FileRouteTypes {
     | '/cloud'
     | '/contact'
     | '/legal'
+    | '/login'
     | '/minecraft'
     | '/partner'
     | '/payment'
     | '/pricing'
     | '/rdp'
+    | '/admin/categories'
     | '/admin/login'
     | '/admin/plans'
     | '/category/$slug'
@@ -280,11 +300,13 @@ export interface FileRouteTypes {
     | '/cloud'
     | '/contact'
     | '/legal'
+    | '/login'
     | '/minecraft'
     | '/partner'
     | '/payment'
     | '/pricing'
     | '/rdp'
+    | '/admin/categories'
     | '/admin/login'
     | '/admin/plans'
     | '/category/$slug'
@@ -307,11 +329,13 @@ export interface FileRouteTypes {
     | '/cloud'
     | '/contact'
     | '/legal'
+    | '/login'
     | '/minecraft'
     | '/partner'
     | '/payment'
     | '/pricing'
     | '/rdp'
+    | '/admin/categories'
     | '/admin/login'
     | '/admin/plans'
     | '/category/$slug'
@@ -335,6 +359,7 @@ export interface RootRouteChildren {
   CloudRoute: typeof CloudRoute
   ContactRoute: typeof ContactRoute
   LegalRoute: typeof LegalRoute
+  LoginRoute: typeof LoginRoute
   MinecraftRoute: typeof MinecraftRoute
   PartnerRoute: typeof PartnerRoute
   PaymentRoute: typeof PaymentRoute
@@ -384,6 +409,13 @@ declare module '@tanstack/react-router' {
       path: '/minecraft'
       fullPath: '/minecraft'
       preLoaderRoute: typeof MinecraftRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/legal': {
@@ -519,6 +551,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLoginRouteImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/categories': {
+      id: '/admin/categories'
+      path: '/categories'
+      fullPath: '/admin/categories'
+      preLoaderRoute: typeof AdminCategoriesRouteImport
+      parentRoute: typeof AdminRoute
+    }
     '/category/$slug/$planSlug': {
       id: '/category/$slug/$planSlug'
       path: '/$planSlug'
@@ -530,12 +569,14 @@ declare module '@tanstack/react-router' {
 }
 
 interface AdminRouteChildren {
+  AdminCategoriesRoute: typeof AdminCategoriesRoute
   AdminLoginRoute: typeof AdminLoginRoute
   AdminPlansRoute: typeof AdminPlansRoute
   AdminIndexRoute: typeof AdminIndexRoute
 }
 
 const AdminRouteChildren: AdminRouteChildren = {
+  AdminCategoriesRoute: AdminCategoriesRoute,
   AdminLoginRoute: AdminLoginRoute,
   AdminPlansRoute: AdminPlansRoute,
   AdminIndexRoute: AdminIndexRoute,
@@ -565,6 +606,7 @@ const rootRouteChildren: RootRouteChildren = {
   CloudRoute: CloudRoute,
   ContactRoute: ContactRoute,
   LegalRoute: LegalRoute,
+  LoginRoute: LoginRoute,
   MinecraftRoute: MinecraftRoute,
   PartnerRoute: PartnerRoute,
   PaymentRoute: PaymentRoute,

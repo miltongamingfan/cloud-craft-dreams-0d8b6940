@@ -8,19 +8,27 @@ type AnyRoute =
   | "/about" | "/buy" | "/partner" | "/legal" | "/payment" | "/branding" | "/blogs"
   | "/services" | "/services/vps" | "/services/rdp" | "/services/minecraft";
 
-type LinkItem = { label: string; to: AnyRoute; desc?: string };
+type LinkItem = { label: string; to?: AnyRoute; href?: string; desc?: string };
 type GameItem = { label: string; slug: string; desc: string };
 type ToolItem = { label: string; slug: string; desc: string };
 
 type Menu =
-  | { label: "Minecraft"; to: AnyRoute }
+  | { label: "Services Links"; items: LinkItem[]; description: string }
   | { label: "Games"; games: GameItem[] }
   | { label: "Services"; items: LinkItem[] }
   | { label: "Others"; items: LinkItem[] }
   | { label: "Tools"; tools: ToolItem[] };
 
 const menus: Menu[] = [
-  { label: "Minecraft", to: "/minecraft" },
+  {
+    label: "Services Links",
+    description:
+      "Direct access to your HexoraCloud control panels. Manage your Minecraft servers and VPS instances — start, stop, reinstall, view live console and resource usage, all in one place.",
+    items: [
+      { label: "Minecraft Panel", href: "https://mc-panel.tigerhost.space/", desc: "Manage your Minecraft servers" },
+      { label: "VPS / RDP Panel", href: "https://vm-control.tigerhost.space/", desc: "Control your VPS & Windows RDP" },
+    ],
+  },
   {
     label: "Games",
     games: [

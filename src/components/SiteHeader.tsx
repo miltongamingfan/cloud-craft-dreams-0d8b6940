@@ -11,7 +11,7 @@ type AnyRoute =
   | "/services" | "/services/vps" | "/services/rdp" | "/services/minecraft" | "/login" | "/admin";
 
 type LinkItem = { label: string; to?: AnyRoute; href?: string; desc?: string };
-type GameItem = { label: string; slug: string; desc: string };
+type GameItem = { label: string; slug: string; desc: string; price: string };
 type ToolItem = { label: string; slug: string; desc: string };
 
 type Menu =
@@ -34,18 +34,18 @@ const menus: Menu[] = [
   {
     label: "Games",
     games: [
-      { label: "Minecraft", slug: "minecraft", desc: "Java + Bedrock, modpacks" },
-      { label: "Palworld", slug: "palworld", desc: "Catch & build at 60 FPS" },
-      { label: "FiveM / GTA V", slug: "fivem", desc: "ESX, QBCore, qb-target" },
-      { label: "Rust", slug: "rust", desc: "Carbon-powered, wipe ready" },
-      { label: "ARK: Survival", slug: "ark", desc: "ASE + ASA, clusters" },
-      { label: "CS2", slug: "cs2", desc: "128-tick, MatchZy ready" },
-      { label: "Valheim", slug: "valheim", desc: "Crossplay, BepInEx" },
-      { label: "Terraria", slug: "terraria", desc: "tShock, TModLoader" },
-      { label: "Garry's Mod", slug: "garrys-mod", desc: "DarkRP, TTT, sandbox" },
-      { label: "Satisfactory", slug: "satisfactory", desc: "Factory building" },
-      { label: "7 Days to Die", slug: "7-days-to-die", desc: "Horde nights, mods" },
-      { label: "Project Zomboid", slug: "project-zomboid", desc: "32-player apocalypse" },
+      { label: "Minecraft", slug: "minecraft", desc: "Java + Bedrock, modpacks", price: "from $2.50" },
+      { label: "Palworld", slug: "palworld", desc: "Catch & build at 60 FPS", price: "from $8.50" },
+      { label: "FiveM / GTA V", slug: "fivem", desc: "ESX, QBCore, qb-target", price: "from $8.50" },
+      { label: "Rust", slug: "rust", desc: "Carbon-powered, wipe ready", price: "from $10" },
+      { label: "ARK: Survival", slug: "ark", desc: "ASE + ASA, clusters", price: "from $12" },
+      { label: "CS2", slug: "cs2", desc: "128-tick, MatchZy ready", price: "from $8" },
+      { label: "Valheim", slug: "valheim", desc: "Crossplay, BepInEx", price: "from $5" },
+      { label: "Terraria", slug: "terraria", desc: "tShock, TModLoader", price: "from $3" },
+      { label: "Garry's Mod", slug: "garrys-mod", desc: "DarkRP, TTT, sandbox", price: "from $4" },
+      { label: "Satisfactory", slug: "satisfactory", desc: "Factory building", price: "from $7" },
+      { label: "7 Days to Die", slug: "7-days-to-die", desc: "Horde nights, mods", price: "from $8" },
+      { label: "Project Zomboid", slug: "project-zomboid", desc: "32-player apocalypse", price: "from $5" },
     ],
   },
   {
@@ -136,7 +136,10 @@ export function SiteHeader() {
                             onClick={() => setOpen(null)}
                             className="block rounded-xl px-3 py-2.5 hover:bg-secondary/60"
                           >
-                            <div className="text-sm font-semibold">{g.label}</div>
+                            <div className="flex items-center justify-between gap-3">
+                              <div className="text-sm font-semibold">{g.label}</div>
+                              <div className="text-[11px] font-semibold text-accent">{g.price}</div>
+                            </div>
                             <div className="text-xs text-muted-foreground">{g.desc}</div>
                           </Link>
                         ))}

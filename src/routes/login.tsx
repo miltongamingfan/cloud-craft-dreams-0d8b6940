@@ -43,8 +43,14 @@ function LoginPage() {
           options: { emailRedirectTo: window.location.origin },
         });
         if (error) throw error;
-        setInfo("Account created! Check your email to verify, then sign in.");
-        setMode("login");
+        // Auto-confirm enabled — sign the user straight in.
+        const { error: signInErr } = await supabase.auth.signInWithPassword({ email, password });
+        if (signInErr) {
+          setInfo("Account created! You can now sign in.");
+          setMode("login");
+        } else {
+          router.navigate({ to: "/" });
+        }
       }
     } catch (e: any) {
       setErr(e.message ?? "Something went wrong");

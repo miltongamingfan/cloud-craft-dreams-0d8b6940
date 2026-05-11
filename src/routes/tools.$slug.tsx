@@ -41,6 +41,12 @@ function ToolPage() {
         <h1 className="mt-6 font-display text-5xl font-extrabold md:text-6xl">{tool.name}</h1>
         <p className="mt-4 text-lg text-accent font-semibold">{tool.tagline}</p>
         <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">{tool.intro}</p>
+
+        <div className="mx-auto mt-8 inline-flex items-baseline gap-2 rounded-2xl border border-border/60 bg-card/40 px-6 py-4 backdrop-blur">
+          <span className="text-xs uppercase tracking-[0.2em] text-muted-foreground">From</span>
+          <span className="font-display text-3xl font-extrabold gradient-text">{tool.price}</span>
+          <span className="text-xs text-muted-foreground">· {tool.priceNote}</span>
+        </div>
       </section>
 
       <Section>
@@ -57,8 +63,8 @@ function ToolPage() {
 
       <Section>
         <div className="rounded-3xl border border-border/60 bg-[var(--gradient-card)] p-10 text-center md:p-12">
-          <h2 className="font-display text-3xl font-extrabold md:text-4xl">All tools are 100% free</h2>
-          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">No signup, no rate limits. Bookmark this page — we keep it updated as the games we host evolve.</p>
+          <h2 className="font-display text-3xl font-extrabold md:text-4xl">Get the full toolkit</h2>
+          <p className="mx-auto mt-3 max-w-xl text-muted-foreground">Lifetime access — pay once, use forever. We keep every tool updated as the games we host evolve.</p>
           <div className="mt-7 flex flex-wrap justify-center gap-3">
             <Link to="/buy" className="rounded-xl bg-[var(--gradient-primary)] px-6 py-3 font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform hover:scale-105">
               Host with us

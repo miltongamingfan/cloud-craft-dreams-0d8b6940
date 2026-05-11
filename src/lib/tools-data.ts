@@ -6,6 +6,8 @@ export type ToolInfo = {
   name: string;
   tagline: string;
   intro: string;
+  price: string;
+  priceNote: string;
   icon: ComponentType<{ className?: string }>;
   features: { title: string; desc: string }[];
 };
@@ -14,8 +16,11 @@ export const tools: ToolInfo[] = [
   {
     slug: "minecraft",
     name: "Minecraft Tools",
-    tagline: "Free utilities for every Minecraft server owner.",
-    intro: "A full toolkit for Minecraft admins — server status pings, MOTD generators, color code converters, UUID lookups, and skin viewers. Free, no signup required.",
+    tagline: "A complete utility suite for Minecraft server owners.",
+    intro:
+      "Everything a Minecraft admin needs in one panel — live server status pings, MOTD generators with HEX support, color-code converters, UUID and skin lookups, and a smart RAM calculator. Built by people who actually run networks, not generic web tools.",
+    price: "₹49",
+    priceNote: "one-time / lifetime access",
     icon: Box,
     features: [
       { title: "Server Status Checker", desc: "Ping any Minecraft Java or Bedrock server and see online players, MOTD, version, and favicon in real time." },
@@ -29,8 +34,11 @@ export const tools: ToolInfo[] = [
   {
     slug: "fivem",
     name: "FiveM Tools",
-    tagline: "Utilities for FiveM server owners and developers.",
-    intro: "Everything you need to run a serious FiveM RP server — server status, artifact checker, resource analyzer, txAdmin recipe builder, and license generators.",
+    tagline: "Pro utilities for FiveM server owners and developers.",
+    intro:
+      "Run a serious FiveM RP server without juggling 10 browser tabs. Live server status, artifact version checker, resource analyzer, txAdmin recipe builder, Steam ID converter, and a license key generator — all in one place.",
+    price: "₹99",
+    priceNote: "one-time / lifetime access",
     icon: Crosshair,
     features: [
       { title: "FiveM Server Status", desc: "Ping any FiveM endpoint, see live players, sv_hostname, gametype, and resources loaded." },
@@ -44,8 +52,11 @@ export const tools: ToolInfo[] = [
   {
     slug: "looking-glass",
     name: "Looking Glass",
-    tagline: "Test latency from every HexoraCloud region.",
-    intro: "Run ping, MTR, and traceroute from each of our 12+ regions to your IP. Pick the closest location for the lowest ping before you order.",
+    tagline: "Test real latency from every HexoraCloud region before you order.",
+    intro:
+      "Pick the right datacenter the first time. Run ping, MTR, and traceroute from each of our 12+ regions straight to your IP, and download speed-test files in any size so you know exactly what you're getting.",
+    price: "Free",
+    priceNote: "no signup required",
     icon: Wrench,
     features: [
       { title: "Multi-region ping", desc: "Ping from US-East, US-West, EU-Central, EU-West, India, Singapore, Sydney, and São Paulo." },

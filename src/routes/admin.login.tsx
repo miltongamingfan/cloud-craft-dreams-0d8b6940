@@ -1,4 +1,4 @@
-import { createFileRoute, useRouter } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { Hexagon } from "lucide-react";
@@ -6,7 +6,6 @@ import { Hexagon } from "lucide-react";
 export const Route = createFileRoute("/admin/login")({ component: LoginPage });
 
 function LoginPage() {
-  const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [err, setErr] = useState<string | null>(null);
@@ -16,15 +15,28 @@ function LoginPage() {
     e.preventDefault();
     setErr(null); setLoading(true);
     try {
-      // Username-based admin login. Accepts either bare username (e.g. "jabir")
-      // or a full email. Internally maps to <username>@hexora.admin.
       const email = username.includes("@") ? username.trim() : `${username.trim().toLowerCase()}@hexora.admin`;
-      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      const { data, error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
-      router.navigate({ to: "/admin" });
+      if (!data.user) throw new Error("Sign in failed");
+
+      // Verify admin role before letting them in
+      const { data: roleRow, error: roleErr } = await supabase
+        .from("user_roles")
+        .select("role")
+        .eq("user_id", data.user.id)
+        .eq("role", "admin")
+        .maybeSingle();
+      if (roleErr) throw roleErr;
+      if (!roleRow) {
+        await supabase.auth.signOut();
+        throw new Error("This account is not an admin.");
+      }
+
+      // Hard navigation — avoids any stale auth state in the router/layout.
+      window.location.assign("/admin");
     } catch (e: any) {
       setErr(e.message ?? "Invalid username or password");
-    } finally {
       setLoading(false);
     }
   };

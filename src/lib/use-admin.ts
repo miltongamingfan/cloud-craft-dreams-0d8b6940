@@ -43,19 +43,21 @@ export function useIsAdmin() {
     }
     let cancelled = false;
     setIsAdmin(null);
-    supabase
-      .from("user_roles")
-      .select("role")
-      .eq("user_id", user.id)
-      .eq("role", "admin")
-      .maybeSingle()
-      .then(({ data, error }) => {
+    const checkRole = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("user_roles")
+          .select("role")
+          .eq("user_id", user.id)
+          .eq("role", "admin")
+          .maybeSingle();
         if (error) throw error;
         if (!cancelled) setIsAdmin(!!data);
-      })
-      .catch(() => {
+      } catch {
         if (!cancelled) setIsAdmin(false);
-      });
+      }
+    };
+    checkRole();
     return () => { cancelled = true; };
   }, [user, authLoading]);
 

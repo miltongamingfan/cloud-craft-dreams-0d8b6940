@@ -21,6 +21,11 @@ const stats = [
   { value: "<5 min", label: "Avg support reply" },
 ];
 
+const owners = [
+  { name: "Al Jabir", role: "Owner" },
+  { name: "Hozta", role: "Owner" },
+];
+
 const values = [
   { icon: Zap, title: "Performance first", desc: "Ryzen 9 CPUs, Gen4 NVMe, and 10 Gbps uplinks. We don't oversell — every plan flies." },
   { icon: Shield, title: "Always protected", desc: "Enterprise-grade DDoS mitigation up to 1.5 Tbps. Always on. Always free." },
@@ -62,6 +67,21 @@ function AboutPage() {
             <div key={s.label} className="text-center">
               <div className="font-display text-3xl font-extrabold gradient-text md:text-4xl">{s.value}</div>
               <div className="mt-1 text-xs uppercase tracking-wide text-muted-foreground">{s.label}</div>
+            </div>
+          ))}
+        </div>
+      </Section>
+
+      <Section>
+        <SectionTitle eyebrow="Leadership" title="Owned and run by people who care about every server." />
+        <div className="mx-auto grid max-w-3xl gap-4 sm:grid-cols-2">
+          {owners.map((owner) => (
+            <div key={owner.name} className="rounded-2xl border border-border/60 bg-card/40 p-6 text-center backdrop-blur transition-all hover:-translate-y-1 hover:border-primary/60 hover:shadow-[var(--shadow-glow)]">
+              <div className="mx-auto grid h-12 w-12 place-items-center rounded-xl bg-[var(--gradient-primary)] text-primary-foreground shadow-[var(--shadow-glow)]">
+                <Users className="h-5 w-5" />
+              </div>
+              <h2 className="mt-4 font-display text-2xl font-extrabold">{owner.name}</h2>
+              <p className="mt-1 text-sm font-semibold uppercase tracking-wide text-accent">{owner.role}</p>
             </div>
           ))}
         </div>

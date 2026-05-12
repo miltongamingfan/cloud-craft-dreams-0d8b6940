@@ -7,14 +7,25 @@ export function useAuth() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let cancelled = false;
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_e, session) => {
+      if (cancelled) return;
       setUser(session?.user ?? null);
-    });
-    supabase.auth.getSession().then(({ data }) => {
-      setUser(data.session?.user ?? null);
       setLoading(false);
     });
-    return () => subscription.unsubscribe();
+    supabase.auth.getUser().then(({ data }) => {
+      if (cancelled) return;
+      setUser(data.user ?? null);
+      setLoading(false);
+    }).catch(() => {
+      if (cancelled) return;
+      setUser(null);
+      setLoading(false);
+    });
+    return () => {
+      cancelled = true;
+      subscription.unsubscribe();
+    };
   }, []);
 
   return { user, loading };
@@ -31,15 +42,22 @@ export function useIsAdmin() {
       return;
     }
     let cancelled = false;
-    supabase
-      .from("user_roles")
-      .select("role")
-      .eq("user_id", user.id)
-      .eq("role", "admin")
-      .maybeSingle()
-      .then(({ data }) => {
+    setIsAdmin(null);
+    const checkRole = async () => {
+      try {
+        const { data, error } = await supabase
+          .from("user_roles")
+          .select("role")
+          .eq("user_id", user.id)
+          .eq("role", "admin")
+          .maybeSingle();
+        if (error) throw error;
         if (!cancelled) setIsAdmin(!!data);
-      });
+      } catch {
+        if (!cancelled) setIsAdmin(false);
+      }
+    };
+    checkRole();
     return () => { cancelled = true; };
   }, [user, authLoading]);
 

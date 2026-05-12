@@ -42,14 +42,19 @@ export function useIsAdmin() {
       return;
     }
     let cancelled = false;
+    setIsAdmin(null);
     supabase
       .from("user_roles")
       .select("role")
       .eq("user_id", user.id)
       .eq("role", "admin")
       .maybeSingle()
-      .then(({ data }) => {
+      .then(({ data, error }) => {
+        if (error) throw error;
         if (!cancelled) setIsAdmin(!!data);
+      })
+      .catch(() => {
+        if (!cancelled) setIsAdmin(false);
       });
     return () => { cancelled = true; };
   }, [user, authLoading]);

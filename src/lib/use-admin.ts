@@ -15,7 +15,7 @@ export function useAuth() {
     });
     supabase.auth.getUser().then(({ data }) => {
       if (cancelled) return;
-      setUser(data.session?.user ?? null);
+      setUser(data.user ?? null);
       setLoading(false);
     }).catch(() => {
       if (cancelled) return;

@@ -14,7 +14,7 @@ export const Route = createFileRoute("/")({
 });
 
 const services = [
-  { name: "Minecraft", tag: "High Performance & Best Ping Hosting.", price: "$3.50", color: "from-emerald-500 to-lime-400", icon: <Box className="h-6 w-6" /> },
+  { name: "Minecraft", tag: "High Performance & Best Ping Hosting.", price: "₹20", color: "from-emerald-500 to-lime-400", icon: <Box className="h-6 w-6" /> },
   { name: "Palworld", tag: "High-performance hosting built for gamers.", price: "$8.50", color: "from-sky-500 to-cyan-400", icon: <Gamepad2 className="h-6 w-6" /> },
   { name: "FiveM", tag: "GTA V roleplay servers, ESX & QBCore ready.", price: "$8.50", color: "from-orange-500 to-amber-400", icon: <Gamepad2 className="h-6 w-6" /> },
   { name: "Rust", tag: "High-pop wipes, Oxide & Carbon supported.", price: "$10", color: "from-red-500 to-rose-400", icon: <Gamepad2 className="h-6 w-6" /> },

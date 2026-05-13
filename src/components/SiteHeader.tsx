@@ -8,7 +8,7 @@ import { supabase } from "@/integrations/supabase/client";
 type AnyRoute =
   | "/" | "/minecraft" | "/cloud" | "/rdp" | "/pricing" | "/contact"
   | "/about" | "/buy" | "/partner" | "/legal" | "/payment" | "/branding" | "/blogs"
-  | "/services" | "/services/vps" | "/services/rdp" | "/services/minecraft" | "/login" | "/admin";
+  | "/services" | "/services/vps" | "/services/rdp" | "/services/minecraft" | "/services/special-offers" | "/login" | "/admin";
 
 type LinkItem = { label: string; to?: AnyRoute; href?: string; desc?: string };
 type GameItem = { label: string; slug: string; desc: string; price: string };
@@ -54,6 +54,7 @@ const menus: Menu[] = [
       { label: "Minecraft Hosting", to: "/services/minecraft", desc: "Java + Bedrock, modpacks, networks" },
       { label: "Cloud VPS", to: "/services/vps", desc: "KVM, NVMe, full root" },
       { label: "Windows RDP", to: "/services/rdp", desc: "Forex, GPU, dedicated IP" },
+      { label: "Special Offers", to: "/services/special-offers", desc: "Limited-time deals & discounts" },
       { label: "All plans", to: "/pricing", desc: "Compare every plan side by side" },
     ],
   },

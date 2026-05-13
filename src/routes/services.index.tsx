@@ -1,11 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Box, Cloud, Monitor, ArrowRight } from "lucide-react";
+import { Box, Cloud, Monitor, ArrowRight, Sparkles } from "lucide-react";
 import { Section, SectionTitle } from "@/components/site/Sections";
 
 export const Route = createFileRoute("/services/")({
   head: () => ({ meta: [
     { title: "Services — HexoraCloud" },
-    { name: "description", content: "Minecraft, Cloud VPS, and Windows RDP hosting plans." },
+    { name: "description", content: "Minecraft, Cloud VPS, Windows RDP, and special offers." },
   ] }),
   component: ServicesIndex,
 });
@@ -14,6 +14,7 @@ const services = [
   { to: "/services/minecraft" as const, name: "Minecraft Hosting", desc: "Java + Bedrock, modpacks, networks", icon: Box },
   { to: "/services/vps" as const, name: "Cloud VPS", desc: "KVM, NVMe, full root access", icon: Cloud },
   { to: "/services/rdp" as const, name: "Windows RDP", desc: "Forex, GPU, dedicated IP", icon: Monitor },
+  { to: "/services/special-offers" as const, name: "Special Offers", desc: "Limited-time deals & discounts", icon: Sparkles },
 ];
 
 function ServicesIndex() {

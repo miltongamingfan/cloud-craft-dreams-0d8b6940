@@ -28,6 +28,7 @@ import { Route as ServicesIndexRouteImport } from './routes/services.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as ToolsSlugRouteImport } from './routes/tools.$slug'
 import { Route as ServicesVpsRouteImport } from './routes/services.vps'
+import { Route as ServicesSpecialOffersRouteImport } from './routes/services.special-offers'
 import { Route as ServicesRdpRouteImport } from './routes/services.rdp'
 import { Route as ServicesMinecraftRouteImport } from './routes/services.minecraft'
 import { Route as GamesSlugRouteImport } from './routes/games.$slug'
@@ -132,6 +133,11 @@ const ServicesVpsRoute = ServicesVpsRouteImport.update({
   path: '/services/vps',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ServicesSpecialOffersRoute = ServicesSpecialOffersRouteImport.update({
+  id: '/services/special-offers',
+  path: '/services/special-offers',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRdpRoute = ServicesRdpRouteImport.update({
   id: '/services/rdp',
   path: '/services/rdp',
@@ -196,6 +202,7 @@ export interface FileRoutesByFullPath {
   '/games/$slug': typeof GamesSlugRoute
   '/services/minecraft': typeof ServicesMinecraftRoute
   '/services/rdp': typeof ServicesRdpRoute
+  '/services/special-offers': typeof ServicesSpecialOffersRoute
   '/services/vps': typeof ServicesVpsRoute
   '/tools/$slug': typeof ToolsSlugRoute
   '/admin/': typeof AdminIndexRoute
@@ -224,6 +231,7 @@ export interface FileRoutesByTo {
   '/games/$slug': typeof GamesSlugRoute
   '/services/minecraft': typeof ServicesMinecraftRoute
   '/services/rdp': typeof ServicesRdpRoute
+  '/services/special-offers': typeof ServicesSpecialOffersRoute
   '/services/vps': typeof ServicesVpsRoute
   '/tools/$slug': typeof ToolsSlugRoute
   '/admin': typeof AdminIndexRoute
@@ -254,6 +262,7 @@ export interface FileRoutesById {
   '/games/$slug': typeof GamesSlugRoute
   '/services/minecraft': typeof ServicesMinecraftRoute
   '/services/rdp': typeof ServicesRdpRoute
+  '/services/special-offers': typeof ServicesSpecialOffersRoute
   '/services/vps': typeof ServicesVpsRoute
   '/tools/$slug': typeof ToolsSlugRoute
   '/admin/': typeof AdminIndexRoute
@@ -285,6 +294,7 @@ export interface FileRouteTypes {
     | '/games/$slug'
     | '/services/minecraft'
     | '/services/rdp'
+    | '/services/special-offers'
     | '/services/vps'
     | '/tools/$slug'
     | '/admin/'
@@ -313,6 +323,7 @@ export interface FileRouteTypes {
     | '/games/$slug'
     | '/services/minecraft'
     | '/services/rdp'
+    | '/services/special-offers'
     | '/services/vps'
     | '/tools/$slug'
     | '/admin'
@@ -342,6 +353,7 @@ export interface FileRouteTypes {
     | '/games/$slug'
     | '/services/minecraft'
     | '/services/rdp'
+    | '/services/special-offers'
     | '/services/vps'
     | '/tools/$slug'
     | '/admin/'
@@ -369,6 +381,7 @@ export interface RootRouteChildren {
   GamesSlugRoute: typeof GamesSlugRoute
   ServicesMinecraftRoute: typeof ServicesMinecraftRoute
   ServicesRdpRoute: typeof ServicesRdpRoute
+  ServicesSpecialOffersRoute: typeof ServicesSpecialOffersRoute
   ServicesVpsRoute: typeof ServicesVpsRoute
   ToolsSlugRoute: typeof ToolsSlugRoute
   ServicesIndexRoute: typeof ServicesIndexRoute
@@ -509,6 +522,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ServicesVpsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/services/special-offers': {
+      id: '/services/special-offers'
+      path: '/services/special-offers'
+      fullPath: '/services/special-offers'
+      preLoaderRoute: typeof ServicesSpecialOffersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services/rdp': {
       id: '/services/rdp'
       path: '/services/rdp'
@@ -616,6 +636,7 @@ const rootRouteChildren: RootRouteChildren = {
   GamesSlugRoute: GamesSlugRoute,
   ServicesMinecraftRoute: ServicesMinecraftRoute,
   ServicesRdpRoute: ServicesRdpRoute,
+  ServicesSpecialOffersRoute: ServicesSpecialOffersRoute,
   ServicesVpsRoute: ServicesVpsRoute,
   ToolsSlugRoute: ToolsSlugRoute,
   ServicesIndexRoute: ServicesIndexRoute,

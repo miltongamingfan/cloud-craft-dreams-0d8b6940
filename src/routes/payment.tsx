@@ -6,7 +6,7 @@ import { Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/payment")({
   head: () => ({
     meta: [
-      { title: "Payment Methods — HexoraCloud" },
+      { title: "Payment Methods — TigerHost" },
       { name: "description", content: "Pay for your hosting with credit card, PayPal, crypto (BTC, ETH, LTC, USDT), UPI, INR, or local methods. No hidden fees." },
     ],
   }),

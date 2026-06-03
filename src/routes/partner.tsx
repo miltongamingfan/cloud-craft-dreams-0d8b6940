@@ -5,8 +5,8 @@ import { Handshake } from "lucide-react";
 export const Route = createFileRoute("/partner")({
   head: () => ({
     meta: [
-      { title: "Affiliate & Partner Program — HexoraCloud" },
-      { name: "description", content: "Earn 25% recurring commission on every customer you refer to HexoraCloud. Custom tiers available for creators and communities." },
+      { title: "Affiliate & Partner Program — TigerHost" },
+      { name: "description", content: "Earn 25% recurring commission on every customer you refer to TigerHost. Custom tiers available for creators and communities." },
     ],
   }),
   component: () => (

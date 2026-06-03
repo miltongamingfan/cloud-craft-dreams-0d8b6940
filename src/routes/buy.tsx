@@ -4,7 +4,7 @@ import { MessageCircle, Ticket, ArrowLeft, ExternalLink } from "lucide-react";
 export const Route = createFileRoute("/buy")({
   head: () => ({
     meta: [
-      { title: "How to Buy — HexoraCloud" },
+      { title: "How to Buy — TigerHost" },
       { name: "description", content: "To buy services join our Discord servers and create a ticket." },
     ],
   }),
@@ -12,8 +12,8 @@ export const Route = createFileRoute("/buy")({
 });
 
 const discords = [
-  { label: "HexoraCloud Main Discord", url: "https://discord.gg/tsAHsJFB" },
-  { label: "HexoraCloud Community", url: "https://discord.gg/7Dr7PgpqJ" },
+  { label: "TigerHost Main Discord", url: "https://discord.gg/tsAHsJFB" },
+  { label: "TigerHost Community", url: "https://discord.gg/7Dr7PgpqJ" },
 ];
 
 function BuyPage() {

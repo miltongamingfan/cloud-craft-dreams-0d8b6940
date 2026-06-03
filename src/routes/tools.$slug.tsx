@@ -11,7 +11,7 @@ export const Route = createFileRoute("/tools/$slug")({
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.tool.name} — HexoraCloud` },
+      { title: `${loaderData?.tool.name} — TigerHost` },
       { name: "description", content: loaderData?.tool.tagline ?? "" },
     ],
   }),

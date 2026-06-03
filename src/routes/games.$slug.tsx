@@ -11,9 +11,9 @@ export const Route = createFileRoute("/games/$slug")({
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.game.name} Server Hosting — HexoraCloud` },
+      { title: `${loaderData?.game.name} Server Hosting — TigerHost` },
       { name: "description", content: loaderData?.game.tagline ?? "" },
-      { property: "og:title", content: `${loaderData?.game.name} Hosting — HexoraCloud` },
+      { property: "og:title", content: `${loaderData?.game.name} Hosting — TigerHost` },
       { property: "og:description", content: loaderData?.game.intro ?? "" },
     ],
   }),

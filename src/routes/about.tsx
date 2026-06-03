@@ -5,9 +5,9 @@ import { Cpu, Shield, Zap, Globe, Heart, Users, MessageCircle, ExternalLink, Ser
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About — HexoraCloud" },
-      { name: "description", content: "HexoraCloud powers Minecraft servers, Cloud VPS, and Windows RDP for thousands of creators worldwide. Meet the team and join our Discord." },
-      { property: "og:title", content: "About HexoraCloud — Hosting, Redefined" },
+      { title: "About — TigerHost" },
+      { name: "description", content: "TigerHost powers Minecraft servers, Cloud VPS, and Windows RDP for thousands of creators worldwide. Meet the team and join our Discord." },
+      { property: "og:title", content: "About TigerHost — Hosting, Redefined" },
       { property: "og:description", content: "We build the fastest, friendliest hosting on the planet. Minecraft, VPS, and RDP that just works." },
     ],
   }),
@@ -36,8 +36,8 @@ const values = [
 ];
 
 const discords = [
-  { label: "HexoraCloud Main Discord", url: "https://discord.gg/tsAHsJFB", desc: "Announcements, support tickets & order pickup" },
-  { label: "HexoraCloud Community", url: "https://discord.gg/7Dr7PgpqJ", desc: "Players, builders, and devs hanging out 24/7" },
+  { label: "TigerHost Main Discord", url: "https://discord.gg/tsAHsJFB", desc: "Announcements, support tickets & order pickup" },
+  { label: "TigerHost Community", url: "https://discord.gg/7Dr7PgpqJ", desc: "Players, builders, and devs hanging out 24/7" },
 ];
 
 function AboutPage() {
@@ -45,13 +45,13 @@ function AboutPage() {
     <>
       <section className="mx-auto max-w-4xl px-6 pt-20 pb-10 text-center">
         <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-accent backdrop-blur">
-          <Users className="h-3.5 w-3.5" /> About HexoraCloud
+          <Users className="h-3.5 w-3.5" /> About TigerHost
         </span>
         <h1 className="mt-6 font-display text-5xl font-extrabold leading-[1.05] md:text-6xl">
           Hosting built by gamers, <span className="gradient-text">for everyone</span> who builds online.
         </h1>
         <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground">
-          HexoraCloud started as a side-project to host a Minecraft SMP for a small group of friends. Today we power
+          TigerHost started as a side-project to host a Minecraft SMP for a small group of friends. Today we power
           <span className="text-foreground font-semibold"> 6,500+ servers</span> across the planet — Minecraft realms,
           gaming networks, indie startups, forex traders, and Discord bots that never sleep.
         </p>

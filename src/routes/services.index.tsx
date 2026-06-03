@@ -4,7 +4,7 @@ import { Section, SectionTitle } from "@/components/site/Sections";
 
 export const Route = createFileRoute("/services/")({
   head: () => ({ meta: [
-    { title: "Services — HexoraCloud" },
+    { title: "Services — TigerHost" },
     { name: "description", content: "Minecraft, Cloud VPS, Windows RDP, and special offers." },
   ] }),
   component: ServicesIndex,

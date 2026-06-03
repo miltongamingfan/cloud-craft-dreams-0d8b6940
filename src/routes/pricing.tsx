@@ -5,7 +5,7 @@ import { Section, SectionTitle } from "@/components/site/Sections";
 import { ArrowRight, Check, Star } from "lucide-react";
 
 export const Route = createFileRoute("/pricing")({
-  head: () => ({ meta: [{ title: "Pricing — HexoraCloud" }, { name: "description", content: "Browse all plans across Minecraft, Cloud VPS, and Windows RDP." }] }),
+  head: () => ({ meta: [{ title: "Pricing — TigerHost" }, { name: "description", content: "Browse all plans across Minecraft, Cloud VPS, and Windows RDP." }] }),
   component: PricingPage,
 });
 

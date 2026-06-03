@@ -5,15 +5,15 @@ import { ScrollText, ShieldCheck, Cookie, FileText } from "lucide-react";
 export const Route = createFileRoute("/legal")({
   head: () => ({
     meta: [
-      { title: "Legal — HexoraCloud" },
-      { name: "description", content: "Terms of Service, Privacy Policy, Acceptable Use, and Cookie Policy for HexoraCloud." },
+      { title: "Legal — TigerHost" },
+      { name: "description", content: "Terms of Service, Privacy Policy, Acceptable Use, and Cookie Policy for TigerHost." },
     ],
   }),
   component: LegalPage,
 });
 
 const docs = [
-  { icon: ScrollText, title: "Terms of Service", desc: "The contract between you and HexoraCloud. Service levels, billing terms, suspensions, refunds." },
+  { icon: ScrollText, title: "Terms of Service", desc: "The contract between you and TigerHost. Service levels, billing terms, suspensions, refunds." },
   { icon: ShieldCheck, title: "Privacy Policy", desc: "What we collect, why, who we share it with, and how to request your data or its deletion. GDPR + CCPA compliant." },
   { icon: FileText, title: "Acceptable Use Policy", desc: "What you can and can't run on our infrastructure. Spam, abuse, illegal content, and law enforcement cooperation." },
   { icon: Cookie, title: "Cookie Policy", desc: "First and third-party cookies we set, what they do, and how to opt out." },

@@ -6,7 +6,7 @@ import { useState } from "react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "HexoraCloud — Minecraft, Cloud VPS & RDP Hosting" },
+      { title: "TigerHost — Minecraft, Cloud VPS & RDP Hosting" },
       { name: "description", content: "Premium hosting for Minecraft, game servers, Cloud VPS, and Windows RDP. Instant deploy, NVMe SSDs, DDoS protection." },
     ],
   }),
@@ -49,7 +49,7 @@ function Index() {
       </Section>
 
       <Section>
-        <SectionTitle eyebrow="Why HexoraCloud" title="Built for performance, designed for humans" />
+        <SectionTitle eyebrow="Why TigerHost" title="Built for performance, designed for humans" />
         <FeatureGrid
           items={[
             { icon: "Cpu", title: "Ryzen 9 7950X", desc: "Latest-gen CPUs clocked at 5.7 GHz for buttery smooth tick rates." },
@@ -79,7 +79,7 @@ function Index() {
       <Section>
         <div className="overflow-hidden rounded-3xl border border-border/60 bg-[var(--gradient-card)] p-10 text-center md:p-16">
           <h2 className="font-display text-4xl font-bold md:text-5xl">Ready to <span className="gradient-text">build something epic?</span></h2>
-          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">Join thousands of creators running their projects on HexoraCloud. 7-day money-back guarantee, no questions asked.</p>
+          <p className="mx-auto mt-4 max-w-xl text-muted-foreground">Join thousands of creators running their projects on TigerHost. 7-day money-back guarantee, no questions asked.</p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link to="/pricing" className="rounded-xl bg-[var(--gradient-primary)] px-6 py-3 font-semibold text-primary-foreground shadow-[var(--shadow-glow)] transition-transform hover:scale-105">Browse plans</Link>
             <Link to="/contact" className="rounded-xl border border-border bg-card/40 px-6 py-3 font-semibold backdrop-blur hover:bg-card/70">Contact sales</Link>
@@ -110,7 +110,7 @@ function HeroSplit() {
           Reliable Game Hosting<br />
           with{" "}
           <span className="relative inline-block">
-            <span className="relative z-10 px-3 text-foreground">HexoraCloud</span>
+            <span className="relative z-10 px-3 text-foreground">TigerHost</span>
             <span
               aria-hidden
               className="absolute inset-0 -skew-x-6 rounded-md"
@@ -121,7 +121,7 @@ function HeroSplit() {
 
         <p className="mt-6 max-w-xl text-base text-muted-foreground md:text-lg">
           Game server hosting trusted by creators, Minecraft networks, and large gaming communities since 2019.
-          HexoraCloud powers over 6,500 active servers with low-latency infrastructure, DDoS protection, and reliable uptime.
+          TigerHost powers over 6,500 active servers with low-latency infrastructure, DDoS protection, and reliable uptime.
         </p>
 
         <p className="mt-6 font-semibold text-accent">Deploy Your Game Server in 30 Seconds — Try for Free!</p>

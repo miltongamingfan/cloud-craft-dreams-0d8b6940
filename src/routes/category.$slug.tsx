@@ -13,7 +13,7 @@ export const Route = createFileRoute("/category/$slug")({
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.category.name ?? "Hosting"} — HexoraCloud` },
+      { title: `${loaderData?.category.name ?? "Hosting"} — TigerHost` },
       { name: "description", content: loaderData?.category.description ?? "" },
     ],
   }),

@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ChevronDown, Menu, X, LogIn, User as UserIcon, LogOut, Shield } from "lucide-react";
 import { useState } from "react";
-import hexoraLogo from "@/assets/hexora-cloud-logo.jpg";
+import tigerHostLogo from "@/assets/tigerhost-logo.png.asset.json";
 import { useAuth, useIsAdmin } from "@/lib/use-admin";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -98,7 +98,7 @@ export function SiteHeader() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 pl-2 pr-3 font-display font-bold">
             <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-lg bg-[var(--gradient-primary)] shadow-[var(--shadow-glow)]">
-              <img src={hexoraLogo} alt="TigerHost logo" className="h-9 w-9 object-cover" />
+              <img src={tigerHostLogo.url} alt="TigerHost logo" className="h-9 w-9 object-cover" />
             </span>
             <span className="leading-tight">
               <span className="block text-sm font-extrabold tracking-tight">TigerHost</span>

@@ -25,7 +25,7 @@ const menus: Menu[] = [
   {
     label: "Services Links",
     description:
-      "Direct access to your HexoraCloud control panels. Manage your Minecraft servers and VPS instances — start, stop, reinstall, view live console and resource usage, all in one place.",
+      "Direct access to your TigerHost control panels. Manage your Minecraft servers and VPS instances — start, stop, reinstall, view live console and resource usage, all in one place.",
     items: [
       { label: "Minecraft Panel", href: "https://mc-panel.tigerhost.space/", desc: "Manage your Minecraft servers" },
       { label: "VPS / RDP Panel", href: "https://vm-control.tigerhost.space/", desc: "Control your VPS & Windows RDP" },
@@ -98,10 +98,10 @@ export function SiteHeader() {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 pl-2 pr-3 font-display font-bold">
             <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-lg bg-[var(--gradient-primary)] shadow-[var(--shadow-glow)]">
-              <img src={hexoraLogo} alt="HexoraCloud logo" className="h-9 w-9 object-cover" />
+              <img src={hexoraLogo} alt="TigerHost logo" className="h-9 w-9 object-cover" />
             </span>
             <span className="leading-tight">
-              <span className="block text-sm font-extrabold tracking-tight">HexoraCloud</span>
+              <span className="block text-sm font-extrabold tracking-tight">TigerHost</span>
               <span className="block text-[9px] font-medium uppercase tracking-[0.2em] text-muted-foreground">Hosting Redefined</span>
             </span>
           </Link>

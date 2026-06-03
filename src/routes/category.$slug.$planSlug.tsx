@@ -12,7 +12,7 @@ export const Route = createFileRoute("/category/$slug/$planSlug")({
   },
   head: ({ loaderData }) => ({
     meta: [
-      { title: `${loaderData?.plan.name} — ${loaderData?.category.name} | HexoraCloud` },
+      { title: `${loaderData?.plan.name} — ${loaderData?.category.name} | TigerHost` },
       { name: "description", content: loaderData?.plan.description ?? loaderData?.plan.tagline ?? "" },
     ],
   }),

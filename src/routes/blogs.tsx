@@ -5,8 +5,8 @@ import { Newspaper, ArrowRight, Calendar } from "lucide-react";
 export const Route = createFileRoute("/blogs")({
   head: () => ({
     meta: [
-      { title: "Blog — HexoraCloud" },
-      { name: "description", content: "Tutorials, server-owner guides, and behind-the-scenes infrastructure deep-dives from the HexoraCloud team." },
+      { title: "Blog — TigerHost" },
+      { name: "description", content: "Tutorials, server-owner guides, and behind-the-scenes infrastructure deep-dives from the TigerHost team." },
     ],
   }),
   component: BlogsPage,

@@ -49,7 +49,7 @@ function LoginPage() {
             <Hexagon className="h-5 w-5 text-primary-foreground" strokeWidth={2.5} />
           </span>
           <div>
-            <div className="font-display text-lg font-bold">HexoraCloud Admin</div>
+            <div className="font-display text-lg font-bold">TigerHost Admin</div>
             <div className="text-xs text-muted-foreground">Sign in to manage plans</div>
           </div>
         </div>

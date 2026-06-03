@@ -6,8 +6,8 @@ import { Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/branding")({
   head: () => ({
     meta: [
-      { title: "Brand Kit — HexoraCloud" },
-      { name: "description", content: "Logos, colors, typography, and usage guidelines for HexoraCloud. Free to use for affiliates, press, and partners." },
+      { title: "Brand Kit — TigerHost" },
+      { name: "description", content: "Logos, colors, typography, and usage guidelines for TigerHost. Free to use for affiliates, press, and partners." },
     ],
   }),
   component: BrandingPage,
@@ -27,7 +27,7 @@ function BrandingPage() {
         <span className="inline-flex items-center gap-2 rounded-full border border-border/60 bg-card/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-accent backdrop-blur">
           Brand Assets
         </span>
-        <h1 className="mt-5 font-display text-5xl font-extrabold md:text-6xl">The HexoraCloud <span className="gradient-text">brand kit</span></h1>
+        <h1 className="mt-5 font-display text-5xl font-extrabold md:text-6xl">The TigerHost <span className="gradient-text">brand kit</span></h1>
         <p className="mx-auto mt-4 max-w-xl text-muted-foreground">
           Free to use for affiliates, press, partners, and customers. Please don't modify the marks — keep our colors, spacing, and typography intact.
         </p>

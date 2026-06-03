@@ -6,7 +6,7 @@ import { fetchCategoryBySlug, fetchPlansByCategory, type Plan } from "@/lib/api/
 
 export const Route = createFileRoute("/services/minecraft")({
   head: () => ({ meta: [
-    { title: "Minecraft Server Plans — HexoraCloud" },
+    { title: "Minecraft Server Plans — TigerHost" },
     { name: "description", content: "Premium Minecraft hosting for Java, Bedrock, modpacks, and large networks. India & Singapore regions." },
   ] }),
   component: MinecraftPlansPage,

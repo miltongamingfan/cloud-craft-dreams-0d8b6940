@@ -6,8 +6,8 @@ import { Hexagon } from "lucide-react";
 
 export const Route = createFileRoute("/login")({
   head: () => ({ meta: [
-    { title: "Sign in — HexoraCloud" },
-    { name: "description", content: "Sign in or create your HexoraCloud account." },
+    { title: "Sign in — TigerHost" },
+    { name: "description", content: "Sign in or create your TigerHost account." },
   ] }),
   component: LoginPage,
 });
@@ -77,7 +77,7 @@ function LoginPage() {
             <Hexagon className="h-5 w-5 text-primary-foreground" strokeWidth={2.5} />
           </span>
           <div>
-            <div className="font-display text-lg font-bold">HexoraCloud</div>
+            <div className="font-display text-lg font-bold">TigerHost</div>
             <div className="text-xs text-muted-foreground">{mode === "login" ? "Welcome back" : "Create your account"}</div>
           </div>
         </div>
@@ -113,7 +113,7 @@ function LoginPage() {
         </form>
 
         <button onClick={() => { setMode(mode === "login" ? "signup" : "login"); setErr(null); setInfo(null); }} className="mt-4 w-full text-center text-sm text-muted-foreground hover:text-foreground">
-          {mode === "login" ? "New to HexoraCloud? Sign up" : "Have an account? Sign in"}
+          {mode === "login" ? "New to TigerHost? Sign up" : "Have an account? Sign in"}
         </button>
 
         <div className="mt-6 border-t border-border/60 pt-4 text-center text-xs text-muted-foreground">

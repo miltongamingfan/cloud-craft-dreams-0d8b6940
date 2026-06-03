@@ -6,7 +6,7 @@ import { fetchCategoryBySlug, fetchPlansByCategory, type Plan } from "@/lib/api/
 
 export const Route = createFileRoute("/services/vps")({
   head: () => ({ meta: [
-    { title: "Cloud VPS Plans — HexoraCloud" },
+    { title: "Cloud VPS Plans — TigerHost" },
     { name: "description", content: "High-performance Intel Xeon Cloud VPS with NVMe storage and 2 Gbps network. India & Singapore regions." },
   ] }),
   component: VpsPlansPage,
@@ -84,7 +84,7 @@ function VpsPlansPage() {
             <div className="mt-6 grid gap-4 sm:grid-cols-2">
               {indiaPlans.map((p) => <PlanCard key={p.id} p={p} />)}
             </div>
-            <p className="mt-5 text-xs text-muted-foreground">— Team HexoraCloud · Create a ticket to purchase any plan.</p>
+            <p className="mt-5 text-xs text-muted-foreground">— Team TigerHost · Create a ticket to purchase any plan.</p>
           </div>
 
           <div className="rounded-3xl border border-border/60 bg-card/40 p-6">

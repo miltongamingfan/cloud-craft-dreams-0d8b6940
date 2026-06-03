@@ -7,7 +7,7 @@ import { fetchCategoryBySlug, fetchPlansByCategory, type Plan } from "@/lib/api/
 export const Route = createFileRoute("/services/special-offers")({
   head: () => ({
     meta: [
-      { title: "Special Offers — HexoraCloud" },
+      { title: "Special Offers — TigerHost" },
       { name: "description", content: "Limited-time deals, seasonal discounts, and bundles on Minecraft, VPS and RDP hosting." },
     ],
   }),

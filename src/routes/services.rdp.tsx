@@ -3,7 +3,7 @@ import { CategoryPlans } from "@/components/site/CategoryPlans";
 
 export const Route = createFileRoute("/services/rdp")({
   head: () => ({ meta: [
-    { title: "Windows RDP Plans — HexoraCloud" },
+    { title: "Windows RDP Plans — TigerHost" },
     { name: "description", content: "Windows RDP servers with dedicated IPs, GPU options, and forex-ready latency." },
   ] }),
   component: () => <CategoryPlans slug="rdp" />,

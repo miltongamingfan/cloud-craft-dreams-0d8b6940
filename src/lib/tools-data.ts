@@ -52,7 +52,7 @@ export const tools: ToolInfo[] = [
   {
     slug: "looking-glass",
     name: "Looking Glass",
-    tagline: "Test real latency from every HexoraCloud region before you order.",
+    tagline: "Test real latency from every TigerHost region before you order.",
     intro:
       "Pick the right datacenter the first time. Run ping, MTR, and traceroute from each of our 12+ regions straight to your IP, and download speed-test files in any size so you know exactly what you're getting.",
     price: "Free",

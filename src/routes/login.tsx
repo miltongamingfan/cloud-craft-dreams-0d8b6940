@@ -51,8 +51,21 @@ function LoginPage() {
     }
   };
 
+  return (
+    <div className="min-h-screen grid place-items-center px-6 py-20">
+      <div className="w-full max-w-md rounded-3xl border border-border/60 bg-card/40 p-8 backdrop-blur shadow-[var(--shadow-elevated)]">
+        <div className="mb-6 flex items-center gap-2">
+          <span className="grid h-10 w-10 place-items-center rounded-xl bg-[var(--gradient-primary)] shadow-[var(--shadow-glow)]">
+            <Hexagon className="h-5 w-5 text-primary-foreground" strokeWidth={2.5} />
+          </span>
+          <div>
+            <div className="font-display text-lg font-bold">TigerHost</div>
+            <div className="text-xs text-muted-foreground">{mode === "login" ? "Welcome back" : "Create your account"}</div>
+          </div>
+        </div>
 
         <form onSubmit={submit} className="space-y-3">
+
 
           <div>
             <label className="mb-1.5 block text-xs font-medium uppercase tracking-wide text-muted-foreground">Email</label>

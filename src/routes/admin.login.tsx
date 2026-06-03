@@ -15,7 +15,7 @@ function LoginPage() {
     e.preventDefault();
     setErr(null); setLoading(true);
     try {
-      const email = username.includes("@") ? username.trim() : `${username.trim().toLowerCase()}@hexora.admin`;
+      const email = username.includes("@") ? username.trim() : `${username.trim().toLowerCase()}@tigerhost.admin`;
       const { data, error } = await supabase.auth.signInWithPassword({ email, password });
       if (error) throw error;
       if (!data.user) throw new Error("Sign in failed");
